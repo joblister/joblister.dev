@@ -20,7 +20,6 @@
  .navbar-default {
        background-color: #96B7A3;
        border-color: #96B7A3;
-       height: 100px;
 
  }
 
@@ -72,29 +71,11 @@
         margin: 10px;
    }
 
-  .sign-placeholders {
-        position:relative;
-        left:40%;
-        top:-620px;
-  }
+ 
 
-  .form1 {
-        position:relative;
-        top:-620px;
-        left:40%;
-        width:300px;
-        border-style: solid;
-        border-width: 2px;
-        border-color: #849189;
+ 
 
-  }
 
-  #profile-create {
-    position:relative;
-    top:-600px;
-    left:49%;
-
-  }
 
    #profile-create:hover {
     color:white;
@@ -120,20 +101,32 @@
 
 .sign-up-txt {
     background-color: #337AB7;
-    position: relative;
-    height: 610px;
-    width: 200px;
-    top: -20px;
+   
 }
 
 #sign-up-direction {
     color:white;
-    position:relative;
-    top:200px;
+    
 
 }
 
+.jumbotron {
+  
+   background-image:url("/img/the office.jpg");
+    background-position:no-repeat;
+    background-position: center;
+    color:white;
+    text-align: center;
+    
+}
 
+
+
+.jumbotron p,h1{
+  
+    
+    
+}
 
 
 

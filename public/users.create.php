@@ -15,21 +15,31 @@
 	<title>Sign-Up</title>
 	<style>
 		body {
-			overflow:hidden;
+			
 		}
 
 	</style>
 </head>
 <body>
 	<?php include 'partials/navbar.php';?>
+	<div class="jumbotron">
+	
+		
+			
+			<h1>Job Lister has the job that you're looking for!</h1>
+			<p>This region's number one site for employers looking for qualified professionals.
+			   Also, the region's number one site for job seekers from all fields.
+			</p> 
+		</div>
+	</div>
 
 
-
-	<div class="sign-up-form">	
-		<div class="sign-up-txt">
+	<div class="sign-up-form container">	
+		<div class="col-md-4 sign-up-txt">
 		<h1 id="sign-up-direction">Sign Up</h1>
-
-		</div>	
+		
+		</div>
+		<div class="col-md-8">	
 		<form method="POST">
 			<h3 class="sign-placeholders">First Name</h3>
 		    <input type="text" class="form-control form1"  aria-describedby="basic-addon1">
@@ -44,7 +54,8 @@
 		     <h3 class="sign-placeholders">Confirm Password</h3>
 		    <input type="password" class="form-control form1"  aria-describedby="basic-addon1">
 		    <button  id="profile-create" type="button" class="btn btn-default">sign up</button>
-
+		</form>
+		</div>
 	</div>
 
 		<script src="/js/practice.js"></script>
