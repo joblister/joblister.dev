@@ -56,9 +56,9 @@
 
 
   .sign-up-link {
-         position: relative;
-         left: 263px;
-         bottom: 5px;
+         position: relative;        
+         left: 270px;
+         bottom: 20px;
    }
 
   #sign-in-btn {
@@ -72,23 +72,66 @@
         margin: 10px;
    }
 
-.form-control {
+  .sign-placeholders {
         position:relative;
-        width:200px;
-        left:100px;
+        left:40%;
+        top:-620px;
+  }
+
+  .form1 {
+        position:relative;
+        top:-620px;
+        left:40%;
+        width:300px;
+        border-style: solid;
+        border-width: 2px;
+        border-color: #849189;
+
+  }
+
+  #profile-create {
+    position:relative;
+    top:-600px;
+    left:49%;
+
+  }
+
+   #profile-create:hover {
+    color:white;
+    background-color: #849189;
+
+  }
+
+  .btn-default {
+    box-shadow: 1.5px 1.5px 2px #888888;
+
 }
 
-.sign-up-form {
-    
+ #sign-in-btn:hover {
+    color:white;
+    background-color: #849189;
+
+  }
+
+ body {
+    font-family: 'Open Sans', sans-serif;
+ }
+
+
+.sign-up-txt {
+    background-color: #337AB7;
+    position: relative;
+    height: 610px;
+    width: 200px;
+    top: -20px;
 }
 
+#sign-up-direction {
+    color:white;
+    position:relative;
+    top:200px;
 
-
-
-
-
-
-
+}
 
 
 
