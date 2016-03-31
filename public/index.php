@@ -13,13 +13,20 @@
   <!---external personalized stylesheet-->
   <style type="text/css">
 
+
    /*css here*/
 
    </style>  
 </head>
 <body>
+
    <?php include 'partials/navbar.php';?>
   
+
+    <div id="wrapper">
+
+
+
 
 
 
