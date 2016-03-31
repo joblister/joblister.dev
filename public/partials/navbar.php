@@ -8,93 +8,10 @@
 <html lang="en">
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/joblister.css">
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<style>
-		
 
-		.btn-primary {
-				position:relative;
-				right:60px;
-			    margin-left: 30px;
-			    top: 30px;
-			    background-color: #96B7A3;
-			    border-color:#96B7A3;
-
-		}
-
-
-
-		.navbar-default {
-		    background-color: #96B7A3;
-		    border-color: #96B7A3;
-			height: 100px;
-
-		}
-
-		.btn-primary:hover {
-    			color: #fff;
-
-    			background-color: #96B7A3;
-   
-    			border-color: #849189;
-    			border-width:1px;
-		}	
-
-		.modal-content {
-			height:300px;
-			width:350px;
-			background-color: #96B7A3;
-		}
-
-		.sign-in {
-			position:relative;
-		    top: 50px;
-		    left: 25%;
-
-		}
-
-		.sign-txt {
-		    color:white;
-		    text-shadow :1.5px 1.5px 2px grey;
-		    margin-left: 20px;
-		    margin-bottom: 20px;
-
-		}
-
-		#no-member {
-		    position: relative;
-		    top: 25px;
-		    left: 150px;
-		    margin: 10px;
-		}
-
-		.sign-up-link {
-		    position: relative;
-		    left: 263px;
-		    bottom: 5px;
-		}
-
-		#sign-in-btn {
-			margin:10px;
-		}
-
-		#no-member {
-		    position: relative;
-		    top: 10px;
-		    left: 160px;
-		    margin: 10px;
-		}
-
-		.sign-up-link {
-		    position: relative;
-		     left: 270px;
-   			 bottom: 20px;
-
-		}
-
-
-	</style>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -133,7 +50,7 @@
 				    </div>
 				  </div>
 				</div>
-					<a href="" type="button" id='' class="btn btn-primary">Home</a>
+					<a href="index.php" type="button" id='' class="btn btn-primary">Home</a>
 					<a href="" type="button" id='' class="btn btn-primary">Account</a>
 					<a href="" type="button" id='' class="btn btn-primary">Create</a>
 					<a href="" type="button" id='' class="btn btn-primary">Logout</a>
