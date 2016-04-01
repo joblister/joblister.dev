@@ -22,16 +22,6 @@
 </head>
 <body>
 	<?php include 'partials/navbar.php';?>
-	<div class="jumbotron">
-	
-		
-			
-			<h1>Job Lister has the job that you're looking for!</h1>
-			<p>This region's number one site for employers looking for qualified professionals.
-			   Also, the region's number one site for job seekers from all fields.
-			</p> 
-		</div>
-	</div>
 
 
 	<div class="sign-up-form container">	

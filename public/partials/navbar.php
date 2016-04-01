@@ -1,3 +1,52 @@
+<?php
+session_start();
+require_once '../Auth.php';
+
+
+if(Auth::check()) {
+	header('Location:/index.php');
+	die();
+}
+
+$username = 'monkey';
+$password = 'password';
+
+
+$attemptedUsername = Input::has('user_name') ?(Input::get('user_name')): "";
+$attemptedPassword = Input::has('password') ?(Input::get('password')): "";
+
+
+Auth::attempt($attemptedUsername, $attemptedPassword);
+	if(Auth::check()) {
+		header('Location:/index.php');
+		die();
+	}
+
+if(isset($_SESSION['LOGGED_IN_USER']) && $_SESSION['LOGGED_IN_USER'] != ""){
+	
+	 header('Location: http://joblister.dev/index.php');
+	  die(); 
+
+}elseif($username == $attemptedUsername && $password == $attemptedPassword) {
+	
+		$_SESSION['LOGGED_IN_USER'] = $username;
+		header('Location: http://joblister.dev/index.php');
+		die();
+		
+
+} else if($attemptedUsername != '' || $attemptedPassword != '') {
+	echo "unsuccessful login attempt";
+}
+
+
+
+
+
+?>
+
+
+
+
 
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
@@ -13,6 +62,7 @@
 	      </div>
 	      <p id='no-member'>Not a member?</p>
 	      <p class='sign-up-link'><a href="users.create.php">Sign Up!</a></p>
+
 	    </form>
     </div>
   </div>
@@ -34,12 +84,14 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-			<li><a href="index.php" id=''>Home</a></li>
-			<li><a href=""  id='' >Account</a></li>
-			<li><a href=""  id='' >Create</a></li>
-			<li><a href=""  id='' >Logout</a></li>
-			<li><a  data-toggle="modal" data-target=".bs-example-modal-sm">Sign In/Sign Up</a></li>
+			<li><a class="nav-text" href="index.php" id=''>Home</a></li>
+			<li><a class="nav-text" href=""  id='' >Account</a></li>
+			<li><a class="nav-text" href=""  id='' >Create</a></li>
+			<li><a class="nav-text" href=""  id='' >Logout</a></li>
+			<li><a class="nav-text" href="" data-toggle="modal" data-target=".bs-example-modal-sm">Sign In/Sign Up</a></li>
 		  </ul>	     
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
+
+
 </nav>

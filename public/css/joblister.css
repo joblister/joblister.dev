@@ -20,6 +20,7 @@
  .navbar-default {
        background-color: #96B7A3;
        border-color: #96B7A3;
+       padding: 10px;
 
  }
 
@@ -100,7 +101,7 @@
 
 
 .sign-up-txt {
-    background-color: #337AB7;
+    background-color: #849189;
    
 }
 
@@ -109,7 +110,7 @@
     
 
 }
-
+    
 .jumbotron {
   
    background-image:url("/img/the office.jpg");
@@ -117,18 +118,50 @@
     background-position: center;
     color:white;
     text-align: center;
+    padding: 70px;
     
 }
 
 
 
-.jumbotron p,h1{
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+   
+    border: solid 1px #abd3ba;
+
+}
+
+.navbar-nav>li>a {
+    border: solid 1px transparent;
+
+}
+
+.nav-text {
+        color: #ededed!important;
+}
+
+.form1 {
+        border: solid 1px;
+        border-color: #849189;
+}
+
+@media (max-width: 400px) {
+    
+    .jumbotron {
   
+   background-image:url("/img/the office.jpg");
+    background-position:no-repeat;
+    background-position: center;
+    color:white;
+    text-align: center;
+    padding: 20px;
     
-    
+    }
+
+
+
+
 }
-
-
 
 
 
