@@ -42,6 +42,14 @@ function descAdd($dbc){
     try {
           $user_name = Input::getString('user_name');
 
+          $user = User::findByUserName($user_name);
+
+          if($user != null){
+
+          	$errors[] = "Username already exists!";
+
+          }
+
     } catch (Exception $e){
 
         $errors[] = $e->getMessage();
@@ -78,6 +86,8 @@ function descAdd($dbc){
 	}
     
 
+
+
     if(empty($errors)){
 
         $first_name = Input::getString('first_name');
@@ -88,7 +98,7 @@ function descAdd($dbc){
         var_dump($password);
 
 
-
+     //UNIQUE is caught here
      $stmt = $dbc->prepare("INSERT INTO users (first_name,last_name,user_name,email,password) VALUES (:first_name,:last_name,:user_name,:email,:password)"); 
         $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
         $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);

@@ -145,6 +145,7 @@ class User extends Model{
 
 
 
+
     public static function delete($id){
 
         self::dbConnect();
