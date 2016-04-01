@@ -92,9 +92,9 @@ if(!empty($_POST)&&isset($_POST['log-in'])) {
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 			<li><a class="nav-text" href="index.php" id=''>Home</a></li>
-			<li><a class="nav-text" href=""  id='' >Account</a></li>
+			<li><a class="nav-text" href="account.php"  id='account' >Account</a></li>
 			<li><a class="nav-text" href=""  id='' >Create</a></li>
-			<li><a class="nav-text" href=""  id='' >Logout</a></li>
+			<li><a class="nav-text" href="logout.php"  id='log-out' >Logout</a></li>
 			<li><a class="nav-text" href="" data-toggle="modal" data-target=".bs-example-modal-sm">Log In/Sign Up</a></li>
 		  </ul>	     
 	    </div><!-- /.navbar-collapse -->
