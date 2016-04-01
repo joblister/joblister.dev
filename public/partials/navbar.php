@@ -4,6 +4,7 @@ require_once '../Auth.php';
 require_once '../User.php';
 
 
+
 if(Auth::check()) {
 	header('Location:/index.php');
 	die();
@@ -18,19 +19,19 @@ $attemptedPassword = Input::has('password') ?(Input::get('password')): "";
 
 Auth::attempt($attemptedUsername, $attemptedPassword);
 	if(Auth::check()) {
-		header('Location:/index.php');
+		//header('Location:/index.php');
 		die();
 	}
 
 if(isset($_SESSION['LOGGED_IN_USER']) && $_SESSION['LOGGED_IN_USER'] != ""){
 	
-	 header('Location: http://joblister.dev/index.php');
+	// header('Location: http://joblister.dev/index.php');
 	  die(); 
 
 }elseif($username == $attemptedUsername && $password == $attemptedPassword) {
 	
 		$_SESSION['LOGGED_IN_USER'] = $username;
-		header('Location: http://joblister.dev/index.php');
+		//header('Location: http://joblister.dev/index.php');
 		die();
 		
 

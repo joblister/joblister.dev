@@ -11,7 +11,7 @@ class Auth{
 	
 
 	public static function attempt($username,$password) {
-		$user = User::findByUserName($username)
+		$user = User::findByUserName($username);
 		if ($user == null) {
 			return false;
 		}

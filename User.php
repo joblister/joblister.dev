@@ -166,7 +166,7 @@ class User extends Model{
 
         $stmt = self::$dbc->prepare('SELECT * FROM user WHERE user_name = :user_name');
 
-        $stmt->bindValue(':user_name', $username , PDO::PARAM_INT);
+        $stmt->bindValue(':user_name', $username , PDO::PARAM_STR);
 
         //execute gets its own line, t or false
         $stmt->execute();
