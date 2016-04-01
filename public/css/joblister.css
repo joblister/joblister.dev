@@ -145,6 +145,26 @@
         border-color: #849189;
 }
 
+.thumbnail {
+  position:relative;
+  width: 100px;
+}
+
+.hal {
+    position: relative;
+    left: 40%;
+    top: 50px;
+}
+
+.logout-txt {
+  text-align: center;
+
+}
+
+#bye {
+  position:relative;
+  top:30px;
+}
 @media (max-width: 400px) {
     
     .jumbotron {
@@ -156,6 +176,22 @@
     text-align: center;
     padding: 20px;
     
+    }
+
+    #bye {
+      position:relative;
+      top:30px;
+    } 
+
+    .hal {
+      position: relative;
+      left: 40%;
+      top: 50px;
+    }
+
+    .logout-txt {
+      text-align: center;
+
     }
 
 
