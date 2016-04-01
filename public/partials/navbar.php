@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../Auth.php';
+require_once '../User.php';
 
 
 if(Auth::check()) {
@@ -8,8 +9,7 @@ if(Auth::check()) {
 	die();
 }
 
-$username = 'monkey';
-$password = 'password';
+
 
 
 $attemptedUsername = Input::has('user_name') ?(Input::get('user_name')): "";
@@ -58,7 +58,7 @@ if(isset($_SESSION['LOGGED_IN_USER']) && $_SESSION['LOGGED_IN_USER'] != ""){
 	        <input  id="username" type="text" placeholder="Enter your username" name="user_name"><br>
 	        <label for "password"></label>
 	        <input id="password" type="password" placeholder="Enter your password" name="password"><br>
-	        <button  id="sign-in-btn" type="button" class="btn btn-default">sign in</button>
+	        <button  id="sign-in-btn" type="submit" class="btn btn-default">sign in</button>
 	      </div>
 	      <p id='no-member'>Not a member?</p>
 	      <p class='sign-up-link'><a href="users.create.php">Sign Up!</a></p>

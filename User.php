@@ -158,4 +158,40 @@ class User extends Model{
 
 
     }
+
+      public static function findByUserName($username){
+
+        // Get connection to the database
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare('SELECT * FROM user WHERE user_name = :user_name');
+
+        $stmt->bindValue(':user_name', $username , PDO::PARAM_INT);
+
+        //execute gets its own line, t or false
+        $stmt->execute();
+
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+
+        // @TODO: Create select statement using prepared statements
+
+        // @TODO: Store the result in a variable named $result
+
+        // The following code will set the attributes on the calling object based on the result variable's contents
+        $instance = null;
+        if ($result) {
+            $instance = new static($result);
+        }
+        return $instance;
+    }
+
+
+
+
+
 }
+
+
+
+
+
