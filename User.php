@@ -39,29 +39,6 @@ class User extends Model{
         //        so the object properly represents a DB record
 
 
-    protected function pagignate(){
-
-        $page = Input::has('page')? Input::get('page') : 1;
-
-        $limit = 10;
-
-        $offset = ($limit * $page)-$limit;
-
-        $stmt = $dbc->prepare("SELECT * FROM posts LIMIT :limit OFFSET :offset");
-
-        $stmt->bindValue(':limit', $limit,PDO::PARAM_INT);
-
-        $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-
-        $stmt->execute();
-         
-        $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $count = $dbc->query("SELECT count('post_id') FROM posts")->fetchColumn();
-
-        $total_pages = $count/10;
-
-    }
 
 
 
@@ -142,6 +119,7 @@ class User extends Model{
 
         // @TODO: Learning from the find method, return all the matching records
     }
+
 
 
 
