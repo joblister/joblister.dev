@@ -1,4 +1,5 @@
 <?php
+require_once '../Auth.php';
 require_once '../User.php';
 $errors = [];
 //from PREV and NEXT current page
@@ -106,7 +107,16 @@ function descAdd($dbc){
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->bindValue(':password', $password, PDO::PARAM_STR);
         $stmt->execute();
+
+
+
+        Auth::attempt($user_name,$password);
+
+        header("Location: posts.php")
+
     }
+
+
 
    var_dump($errors);     
  return $errors;
