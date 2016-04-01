@@ -9,12 +9,6 @@ $dbc->exec($truncate);
 $truncate = 'DELETE FROM users';
 $dbc->exec($truncate);
 
-
-
-
-
-
-
 $Users = [
     ['first_name' => 'Don', 'last_name' => 'Moore','user_name' => 'donny71','email' => 'dmoore@jlister',
      'password' => password_hash('seetheworld1971', PASSWORD_DEFAULT) ],

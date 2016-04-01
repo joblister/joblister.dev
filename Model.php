@@ -1,6 +1,6 @@
 <?php
 
-require_once 'db_connect.php';
+require_once 'database/db_connect.php';
 
 //abstract = write your methods (only!) on a child class
 abstract class Model
