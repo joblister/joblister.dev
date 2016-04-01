@@ -1,23 +1,29 @@
 <?php
 
 
-require_once '../../Input.php';
+require_once '../Input.php';
+require_once '../User.php';
 
 
 class Auth{
 
 	//corect login
-	public static $username = 'guest';
-
-	public static $password = '$2y$10$SLjwBwdOVvnMgWxvTI4Gb.YVcmDlPTpQystHMO2Kfyi/DS8rgA0Fm';
+	
 
 	public static function attempt($username,$password) {
+		$user = User::findByUserName($username);
+		if ($user == null) {
+			return false;
+		}
+		$validPassword = password_verify($password,$user->password);
+		if ($validPassword == true) {
+			$_SESSION['logged_in_user'] = $user;
+		}
+		return ($validPassword);
+		
+		
 
-		$validPassword = password_verify($password,self::$password);//static
-
-		$validUserName = (self::$username == $username);
-
-		return ($validPassword && $validUserName);
+		
 
 	}
 		
@@ -30,7 +36,7 @@ class Auth{
 
 	public static function user() {
 
-		return self::$username;
+		return $_SESSION['logged_in_user'];
 		
 	}
 
