@@ -10,8 +10,8 @@ class Auth{
 	//corect login
 	
 
-	public static function attempt($username,$password) {
-		$user = User::findByUserName($username);
+	public static function attempt($user_name,$password) {
+		$user = User::findByUserName($user_name);
 		if ($user == null) {
 			return false;
 		}
