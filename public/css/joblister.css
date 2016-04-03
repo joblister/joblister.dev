@@ -102,11 +102,13 @@
 
 .sign-up-txt {
     background-color: #849189;
+    
    
 }
 
 #sign-up-direction {
     color:white;
+   
     
 
 }
@@ -171,6 +173,31 @@
     background-color: #849189;
 
   }
+
+ 
+
+ .account-txt {
+    background-color: #849189;
+    color:white;
+    position:relative;
+    height:50em;
+    text-align: center
+ }
+
+
+
+.line {
+    margin:30px;
+    height: 1px;
+    background-color: #717171;
+    border-bottom: 2px solid white;
+
+    box-shadow: 1.5px 1.5px 2px #888888;
+}
+
+.account-info {
+  color:white;
+}
 @media (max-width: 400px) {
     
     .jumbotron {
