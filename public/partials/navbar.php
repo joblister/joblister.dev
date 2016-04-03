@@ -2,6 +2,8 @@
 session_start();
 require_once '../Auth.php';
 require_once '../User.php';
+
+var_dump(User::findByUserName(($_SESSION['logged_in_user'])));
 if(isset($_SESSION['logged_in_user'])){
   var_dump($_SESSION['logged_in_user']);
 }
