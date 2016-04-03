@@ -19,11 +19,10 @@ class Auth{
 		$validPassword = password_verify($attemptedPassword,$user->password);
 		if ($validPassword == true) {
 			$_SESSION['logged_in_user'] = $user;
+			
 		}
-		return false;
-		
-		
 
+		return false;
 		
 
 	}

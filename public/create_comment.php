@@ -2,13 +2,6 @@
 
 require_once '../Auth.php';
 require_once '../postsModel.php';
-// var_dump($_SESSION['logged_in_user']);
-
-extract(postsModel::paginate());
- 
-
-var_dump($posts[0]['title']);
-postsModel::all();
 
 $post_id = $_GET['name'];
 var_dump($post_id);
@@ -16,13 +9,6 @@ postsModel::postId($post_id);
 extract(postsModel::postId($post_id));
 
 
-foreach ($posts as $row => $value){
-
-	if($posts[$row]['post_id'] == $post_id){
-	var_dump($posts[$row]['user_id']);
-	var_dump($posts[$row]['post_id']);
-	}
-}
 ?>
 
 <!DOCTYPE html>
@@ -32,12 +18,12 @@ foreach ($posts as $row => $value){
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/joblister.css">
 	<meta charset="UTF-8">
-	<title>Post Details</title>
+	<title>Create Comment</title>
 	<style>
 
 		.form-control, .sign-placeholders {
 
-			width: 50%;
+			width: 75%;
 			margin: 10px auto;
 		}
 
@@ -57,7 +43,7 @@ foreach ($posts as $row => $value){
 		#inputlg-content{
 
 			height: auto;
-			width: 50%;
+			width: 75%;
 
 		}
 
@@ -82,20 +68,19 @@ foreach ($posts as $row => $value){
 </head>
 <body>
 	<?php include 'partials/navbar.php';?>
+
+
 	
 		<div class="col-lrg-6">	
 			
-			<h1>Interested in this job? Click on the button below to respond.<h1>
+			<h2>Your Comments will be posted below the 'Title' that you selected. <h2>
+			<h3>(Date will be attached automatically).</h3>
 			<hr>
 			
-			<h3 class="sign-placeholders">Title</h3>
-		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" readonly><?= $onePostArray['title']?></textarea>
-		    <h3 class="sign-placeholders">Content</h3>
-		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray['content']?> </textarea>
-		    <h3 class="sign-placeholders">Date</h3>
-		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray['date']?></textarea>
-		    <a id="select-post" type="submit" href="create_comment.php?name=<?= $posts[$row]['post_id']?>" >Click here to Comment</a>
-		 
+		    <h3 class="sign-placeholders">Comment</h3>
+		    <textarea type="text" class="form-control"  id="inputlg-content" name="comment"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
+		   
+		    <button  id="select-post" type="submit" class="btn btn-default">Save</button>
 
 		</div>
 

@@ -3,9 +3,11 @@ session_start();
 require_once '../Auth.php';
 require_once '../User.php';
 
-var_dump(User::findByUserName(($_SESSION['logged_in_user'])));
+
 if(isset($_SESSION['logged_in_user'])){
   var_dump($_SESSION['logged_in_user']);
+  $user = $_SESSION['logged_in_user'];
+  var_dump($user);
 }
 
 if(Auth::check()) {
@@ -111,7 +113,7 @@ if(!empty($_POST['user_name']) && !empty($_POST['password'])&&isset($_POST['log-
 	      <ul class="nav navbar-nav">
 			<li><a class="nav-text" href="index.php" id=''>Home</a></li>
 			<li><a class="nav-text" href="account.php"  id='account' >Account</a></li>
-			<li><a class="nav-text" href=""  id='' >Create</a></li>
+			<li><a class="nav-text" href="create_post.php"  id='' >Create</a></li>
 			<li><a class="nav-text" href="logout.php"  id='log-out' >Logout</a></li>
 			<li><a class="nav-text" href="" data-toggle="modal" data-target=".bs-example-modal-sm">Log In/Sign Up</a></li>
 		  </ul>	     
