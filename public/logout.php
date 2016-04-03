@@ -46,9 +46,9 @@ Auth::logout();
 <script>
 "use strict";
 
-	//var exitLogout =setInterval(function newDoc() {
-    //window.location.assign("index.php")
-//}, 2000);
+	var exitLogout =setInterval(function newDoc() {
+    window.location.assign("index.php")
+}, 2000);
 
 
 	

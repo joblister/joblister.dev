@@ -2,12 +2,27 @@
 
 require_once '../Auth.php';
 require_once '../postsModel.php';
+// var_dump($_SESSION['logged_in_user']);
 
+extract(postsModel::paginate());
+ 
+
+var_dump($posts[0]['title']);
+postsModel::all();
 
 $post_id = $_GET['name'];
 var_dump($post_id);
 postsModel::postId($post_id);
 extract(postsModel::postId($post_id));
+
+
+foreach ($posts as $row => $value){
+
+	if($posts[$row]['post_id'] == $post_id){
+	var_dump($posts[$row]['user_id']);
+	var_dump($posts[$row]['post_id']);
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,13 +87,15 @@ extract(postsModel::postId($post_id));
 			
 			<h1>Interested in this job? Click on the button below to respond.<h1>
 			<hr>
+			
 			<h3 class="sign-placeholders">Title</h3>
 		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" readonly><?= $onePostArray['title']?></textarea>
 		    <h3 class="sign-placeholders">Content</h3>
 		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray['content']?> </textarea>
 		    <h3 class="sign-placeholders">Date</h3>
 		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray['date']?></textarea>
-		    <button  id="select-post" type="submit" class="btn btn-default">Reply or Comment</button>
+		    <a id="select-post" type="submit" href="create_comment.php?name=<?= $posts[$row]['post_id']?>" >Click here to Comment</a>
+		 
 
 		</div>
 

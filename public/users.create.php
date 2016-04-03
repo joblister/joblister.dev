@@ -14,11 +14,7 @@ function descAdd($dbc){
 
      $errors = [];
 
-	var_dump($_POST['first_name']);
-	var_dump($_POST['last_name']);
-	var_dump($_POST['user_name']);
-	var_dump($_POST['email']);
-	var_dump($_POST['password']);
+	
 
 
     try {
@@ -92,10 +88,10 @@ function descAdd($dbc){
         $last_name = Input::getString('last_name');
         $user_name = Input::getString('user_name');
         $email = Input::getString('email');
-        $password = password_hash(Input::getString('password'), PASSWORD_DEFAULT)
+        $password = password_hash(Input::getString('password'), PASSWORD_DEFAULT);
         // Input::getString('password');
         
-        var_dump($password);
+ 
 
 
      //UNIQUE is caught here

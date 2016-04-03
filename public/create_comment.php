@@ -3,6 +3,11 @@
 require_once '../Auth.php';
 require_once '../postsModel.php';
 
+$post_id = $_GET['name'];
+var_dump($post_id);
+postsModel::postId($post_id);
+extract(postsModel::postId($post_id));
+
 
 ?>
 
@@ -13,7 +18,7 @@ require_once '../postsModel.php';
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/joblister.css">
 	<meta charset="UTF-8">
-	<title>Post Details</title>
+	<title>Create Comment</title>
 	<style>
 
 		.form-control, .sign-placeholders {
@@ -63,18 +68,19 @@ require_once '../postsModel.php';
 </head>
 <body>
 	<?php include 'partials/navbar.php';?>
+
+
 	
 		<div class="col-lrg-6">	
 			
-			<h1>Your Post will be added to Job listing page. <h1>
+			<h2>Your Comments will be posted below the 'Title' that you selected. <h2>
 			<h3>(Date will be attached automatically).</h3>
 			<hr>
-			<h3 class="sign-placeholders">Title</h3>
-		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" placeholder="Enter Title: " ></textarea>
-		    <h3 class="sign-placeholders">Content</h3>
-		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
-		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" style="display:none"></textarea>
-		    <a id="select-post" href="posts.php" type="submit">Save and Return to Job Listings</a>
+			
+		    <h3 class="sign-placeholders">Comment</h3>
+		    <textarea type="text" class="form-control"  id="inputlg-content" name="comment"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
+		   
+		    <button  id="select-post" type="submit" class="btn btn-default">Save</button>
 
 		</div>
 

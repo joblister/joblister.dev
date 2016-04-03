@@ -79,7 +79,7 @@ class User extends Model{
         // Get connection to the database
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare('SELECT * FROM user WHERE id = :id');
+        $stmt = self::$dbc->prepare('SELECT * FROM users WHERE id = :id');
 
         $stmt->bindValue(':id', $id , PDO::PARAM_INT);
 
@@ -93,11 +93,12 @@ class User extends Model{
         // @TODO: Store the result in a variable named $result
 
         // The following code will set the attributes on the calling object based on the result variable's contents
-        $instance = null;
-        if ($result) {
-            $instance = new static($result);
-        }
-        return $instance;
+        // $instance = null;
+        // if ($result) {
+        //     $instance = new static($result);
+        // }
+        // return $instance;
+        return array('result'=>$result,'id'=>$id);
     }
 
     /**
@@ -186,7 +187,22 @@ class User extends Model{
         if ($result) {
             $instance = new static($result);
         }
-        return $instance;
+         return $instance;
+    }
+
+    public static function loggedInUser(){
+
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare('SELECT * FROM users WHERE user_name = $user' );
+
+        $stmt->execute();
+
+        $resultsAll = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return array($resultsAll, 'first_name'=>$first_name,'last_name'=>$last_name, 'user_name'=>$user_name, 'email'=>$email, 'password'=>$password);
+
+        // @TODO: Learning from the find method, return all the matching records
     }
 
 

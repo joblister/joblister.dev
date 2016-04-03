@@ -1,11 +1,12 @@
-<!DOCTYPE html>
 <?php
+if(isset($_SESSION['logged_in_user'])){
+  var_dump($_SESSION['logged_in_user']);
+}
 
-var_dump($_SESSION['logged_in_user']);
-var_dump($attemptedUsername);
-var_dump($user);
 
 ?>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
 

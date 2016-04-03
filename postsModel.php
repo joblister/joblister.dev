@@ -51,6 +51,10 @@ class postsModel extends Model{
 
     }
 
+
+// $_SESSION['logged_in_user'] = $user;
+    
+
     protected function insert(){
 
 
