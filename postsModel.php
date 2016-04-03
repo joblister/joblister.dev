@@ -32,6 +32,25 @@ class postsModel extends Model{
 
         }
 
+
+     public static function postId($post_id){
+
+            self::dbConnect();
+
+            $stmt = self::$dbc->prepare("SELECT * FROM posts WHERE post_id = :post_id");
+
+            $stmt->bindValue(':post_id', $post_id , PDO::PARAM_INT);
+
+             //execute gets its own line, t or false
+            $stmt->execute();
+
+            $onePostArray = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            return array('onePostArray' => $onePostArray);
+           
+
+        }
+
     protected function insert(){
 
 
