@@ -3,16 +3,11 @@
 require_once '../Auth.php';
 require_once '../postsModel.php';
 
-extract(postsModel::paginate());
 
-postsModel::all();
-// var_dump($page);
-
-// var_dump($posts[0]['title']);
-
-
-$today = date("F j, Y, g:i a"); 
-
+$post_id = $_GET['name'];
+var_dump($post_id);
+postsModel::postId($post_id);
+extract(postsModel::postId($post_id));
 ?>
 
 <!DOCTYPE html>
@@ -22,43 +17,51 @@ $today = date("F j, Y, g:i a");
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/joblister.css">
 	<meta charset="UTF-8">
-	<title>Add Listings</title>
+	<title>Post Details</title>
 	<style>
 
 		.form-control, .sign-placeholders {
 
 			width: 50%;
-			margin: 0 auto;
-			
+			margin: 10px auto;
 		}
 
-		#select-post {
+		textarea{
 
-			margin-left: 285.250px;
+			text-align: center;
+		}
+
+		.col-lrg-6{
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 			
 		}
 
 		#inputlg-content{
 
-			height: 200px;
+			height: auto;
+			width: 75%;
 
 		}
 
-		#posts-ordered-list li {
 
-
-			font-size: 20px;
-			text-align: center;
-			list-style: none;
-
-		}
-
-		h1{
+		h3{
 			text-align: center;
 			margin: 0 auto;
 			font-size: 25px;
 			color: green;
 		}
+		
+		h1{
+			text-align: center;
+			margin: 0 auto;
+			font-size: 30px;
+			color: green;
+		}
+
+
 
 	</style>
 </head>
@@ -67,29 +70,16 @@ $today = date("F j, Y, g:i a");
 	
 		<div class="col-lrg-6">	
 			
-			<h1>Click on the job listing link to see more information.<h1>
+			<h1>Interested in this job? Click on the button below to respond.<h1>
 			<hr>
-			<br>
-			 	<ul id="posts-ordered-list">
-			   	<?php foreach($posts as $row => $value): ?>
-			  
-		        <li><a href="oneSelectedPost.php?name=<?= $posts[$row]['post_id']?>"> <?= $posts[$row]['title'] ?></a></li><br>
-
-		   		
-		   		<?php endforeach; ?>
-		   		</ul>
-	   			
-		
-		</div>
-
-		<div>
-			<?php if($page < $total_pages) { ?> 
-			<a href="posts.php?page=<?=($page+1)?>">NEXT</a><br>
-			<?php } ?>
-
-			<?php if($page > 1) { ?>     
-			<a href="posts.php?page=<?=($page-1)?>">PREVIOUS</a><br>
-			<?php } ?>
+			<br>	
+			<h3 class="sign-placeholders">Title</h3>
+		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" readonly><?= $onePostArray['title']?></textarea>
+		    <h3 class="sign-placeholders">Content</h3>
+		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray['content']?> </textarea>
+		    <h3 class="sign-placeholders">Date</h3>
+		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray['date']?></textarea>
+		    <button  id="select-post" type="submit" class="btn btn-default">Reply or Comment</button>
 
 		</div>
 

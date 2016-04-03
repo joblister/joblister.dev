@@ -85,9 +85,6 @@ function descAdd($dbc){
     
    
 	}
-    
-
-
 
     if(empty($errors)){
 
@@ -96,6 +93,7 @@ function descAdd($dbc){
         $user_name = Input::getString('user_name');
         $email = Input::getString('email');
         $password = Input::getString('password');
+        // password_hash(Input::getString('password'), PASSWORD_DEFAULT)
         var_dump($password);
 
 
@@ -112,7 +110,7 @@ function descAdd($dbc){
 
         Auth::attempt($user_name,$password);
 
-        header("Location: posts.php")
+        header("Location: posts.php");
 
     }
 
@@ -154,17 +152,17 @@ function descAdd($dbc){
 		<div class="col-md-8">	
 		<form method="POST">
 			<h3 class="sign-placeholders">First Name</h3>
-		    <input type="text" class="form-control form1" name="first_name" value="<?=empty($errors)? '' : Input::get('first_name','')?>" aria-describedby="basic-addon1">
+		    <textarea type="text" class="form-control form1" name="first_name"  aria-describedby="basic-addon1"><?=empty($errors)? '' : Input::get('first_name','')?></textarea>
 		    <h3 class="sign-placeholders">Last Name</h3>
-		    <input type="text" class="form-control form1"  name="last_name" value="<?=empty($errors)? '' : Input::get('last_name','')?>" aria-describedby="basic-addon1">
+		    <textarea type="text" class="form-control form1"  name="last_name"  aria-describedby="basic-addon1"><?=empty($errors)? '' : Input::get('last_name','')?></textarea>
 		    <h3 class="sign-placeholders">Email</h3>
-		    <input type="text" class="form-control form1"  name="email" value="<?=empty($errors)? '' : Input::get('email','')?>" aria-describedby="basic-addon1">
+		    <textarea type="text" class="form-control form1"  name="email"  aria-describedby="basic-addon1"><?=empty($errors)? '' : Input::get('email','')?></textarea>
 		    <h3 class="sign-placeholders">Username</h3>
-		    <input type="text" class="form-control form1"  name="user_name" value="<?=empty($errors)? '' : Input::get('user_name','')?>" aria-describedby="basic-addon1">
+		    <textarea type="text" class="form-control form1"  name="user_name"  aria-describedby="basic-addon1"><?=empty($errors)? '' : Input::get('user_name','')?></textarea>
 		    <h3 class="sign-placeholders">Password</h3>
-		    <input type="password" class="form-control form1"  name="password" value="<?=empty($errors)? '' : Input::get('password','')?>" aria-describedby="basic-addon1">
+		    <textarea type="password" class="form-control form1"  name="password"  aria-describedby="basic-addon1"><?=empty($errors)? '' : Input::get('password','')?></textarea>
 		     <h3 class="sign-placeholders">Confirm Password</h3>
-		    <input type="password" class="form-control form1" name="confirmPassword" aria-describedby="basic-addon1">
+		    <textarea type="password" class="form-control form1" name="confirmPassword" aria-describedby="basic-addon1"></textarea>
 		    <button  id="profile-create" type="submit" class="btn btn-default">sign up</button>
 		</form>
 		</div>

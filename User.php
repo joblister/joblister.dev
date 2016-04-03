@@ -109,7 +109,7 @@ class User extends Model{
 
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare("SELECT * FROM user");
+        $stmt = self::$dbc->prepare("SELECT * FROM users");
 
         $stmt->execute();
 
@@ -127,7 +127,7 @@ class User extends Model{
 
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare("DELETE FROM user WHERE id = :id");
+        $stmt = self::$dbc->prepare("DELETE FROM users WHERE id = :id");
 
         $stmt->bindValue(':id', $id , PDO::PARAM_INT);
 
@@ -142,7 +142,7 @@ class User extends Model{
         // Get connection to the database
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare('SELECT * FROM user WHERE user_name = :user_name');
+        $stmt = self::$dbc->prepare('SELECT * FROM users WHERE user_name = :user_name');
 
         $stmt->bindValue(':user_name', $user_name , PDO::PARAM_STR);
 
@@ -168,7 +168,7 @@ class User extends Model{
         // Get connection to the database
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare('SELECT * FROM user WHERE password = :password');
+        $stmt = self::$dbc->prepare('SELECT * FROM users WHERE password = :password');
 
         $stmt->bindValue(':password', $password , PDO::PARAM_STR);
 
