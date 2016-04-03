@@ -5,7 +5,6 @@ require_once '../Auth.php';
 require_once '../User.php';
 
 
-
 Auth::logout();
 
 ?>

@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+
+var_dump($_SESSION['logged_in_user']);
+var_dump($attemptedUsername);
+var_dump($user);
+
+?>
 <html lang="en">
 <head>
 

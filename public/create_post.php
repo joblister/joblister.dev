@@ -4,10 +4,6 @@ require_once '../Auth.php';
 require_once '../postsModel.php';
 
 
-$post_id = $_GET['name'];
-var_dump($post_id);
-postsModel::postId($post_id);
-extract(postsModel::postId($post_id));
 ?>
 
 <!DOCTYPE html>
@@ -70,15 +66,15 @@ extract(postsModel::postId($post_id));
 	
 		<div class="col-lrg-6">	
 			
-			<h1>Interested in this job? Click on the button below to respond.<h1>
+			<h1>Your Comments will be posted with the selected job Title. Date will be attached automatically.<h1>
 			<hr>
 			<h3 class="sign-placeholders">Title</h3>
-		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" readonly><?= $onePostArray['title']?></textarea>
+		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" placeholder="Enter Title: " ></textarea>
 		    <h3 class="sign-placeholders">Content</h3>
-		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray['content']?> </textarea>
+		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
 		    <h3 class="sign-placeholders">Date</h3>
-		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray['date']?></textarea>
-		    <button  id="select-post" type="submit" class="btn btn-default">Reply or Comment</button>
+		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" value="<?= DATETIME() ?>" style="display:none"></textarea>
+		    <button  id="select-post" type="submit" class="btn btn-default">Save</button>
 
 		</div>
 

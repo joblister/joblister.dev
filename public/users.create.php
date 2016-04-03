@@ -92,12 +92,15 @@ function descAdd($dbc){
         $last_name = Input::getString('last_name');
         $user_name = Input::getString('user_name');
         $email = Input::getString('email');
-        $password = Input::getString('password');
-        // password_hash(Input::getString('password'), PASSWORD_DEFAULT)
+        $password = password_hash(Input::getString('password'), PASSWORD_DEFAULT)
+        // Input::getString('password');
+        
         var_dump($password);
 
 
      //UNIQUE is caught here
+
+
      $stmt = $dbc->prepare("INSERT INTO users (first_name,last_name,user_name,email,password) VALUES (:first_name,:last_name,:user_name,:email,:password)"); 
         $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
         $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);

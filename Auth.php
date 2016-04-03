@@ -19,7 +19,7 @@ class Auth{
 		if ($validPassword == true) {
 			$_SESSION['logged_in_user'] = $user;
 		}
-		return ($validPassword);
+		return array($validPassword,$user);
 		
 		
 
