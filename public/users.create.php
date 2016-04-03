@@ -112,7 +112,7 @@ function descAdd($dbc){
 
         Auth::attempt($user_name,$password);
 
-        header("Location: posts.php")
+        header("Location: posts.php");
 
     }
 
