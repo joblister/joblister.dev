@@ -1,3 +1,10 @@
+<?php
+if(isset($_SESSION['logged_in_user'])){
+  var_dump($_SESSION['logged_in_user']);
+}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -2,49 +2,50 @@
 session_start();
 require_once '../Auth.php';
 require_once '../User.php';
-
+if(isset($_SESSION['logged_in_user'])){
+  var_dump($_SESSION['logged_in_user']);
+}
 
 if(Auth::check()) {
 	echo 'checking if user is already logged on' .PHP_EOL;
-	header('Location:/users.create.php');
-	die();
+	//header('Location:/posts.php');
+	//die();
 }
-if(!empty($_POST)&&isset($_POST['log-in'])) {
-	echo 'user needs  clicked on log-in button' .PHP_EOL;
+
+if(!empty($_POST['user_name']) && !empty($_POST['password'])&&isset($_POST['log-in'])) {
+
 
 	$attemptedUsername = Input::has('user_name') ?(Input::get('user_name')): "";
 	$attemptedPassword = Input::has('password') ?(Input::get('password')): "";
 	
 	var_dump($attemptedUsername, $attemptedPassword);
 
-	extract(Auth::attempt($attemptedUsername, $attemptedPassword));
-
+	
 	if(Auth::attempt($attemptedUsername, $attemptedPassword)){
-	header('Location:/users.create.php');
+	header('Location:/posts.php');
+
 	die();
 	}
-	
 	var_dump(Auth::attempt($attemptedUsername, $attemptedPassword));
 	
-	echo 'successful' .PHP_EOL;
 
 	if(Auth::check()) {
 		echo 'log in 1';
-		header('Location:/users.create.php');
+		header('Location:/posts.php');
 		die();
 
 		
 	} elseif(isset($_SESSION['logged_in_user']) && $_SESSION['logged_in_user'] != ""){
 		echo 'log in 2' . PHP_EOL;
 		
-		 header('Location:/users.create.php');
+		 header('Location:/posts.php');
 		 die(); 
 
 
 	}elseif(User::findByUserName($attemptedUsername) == $attemptedUsername && User::findByPassword($attemptedPassword) == $attemptedPassword) {
 		echo 'log in 3' . PHP_EOL;
 			$_SESSION['logged_in_user'] = $attemptedUsername;
-			header('Location:/users.create.php');
+			header('Location:/posts.php');
 			die();
 
 			
@@ -80,7 +81,7 @@ if(!empty($_POST)&&isset($_POST['log-in'])) {
 	        <input  id="username" type="text" placeholder="Enter your username" name="user_name"><br>
 	        <label for "password"></label>
 	        <input id="password" type="password" placeholder="Enter your password" name="password"><br>
-	        <button  id="sign-in-btn" type="submit" name='log-in' class="btn btn-default">Log In</button>
+	        <button  id="sign-in-btn" type="submit" name='log-in' value='true' class="btn btn-default">Log In</button>
 	      </div>
 	      <p id='no-member'>Not a member?</p>
 	      <p class='sign-up-link'><a href="users.create.php">Sign Up!</a></p>

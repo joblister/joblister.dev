@@ -3,6 +3,8 @@
 require_once '../Auth.php';
 require_once '../postsModel.php';
 
+
+
 extract(postsModel::paginate());
 
 postsModel::all();

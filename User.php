@@ -187,7 +187,7 @@ class User extends Model{
         if ($result) {
             $instance = new static($result);
         }
-        return $instance;
+         return $instance;
     }
 
     public static function loggedInUser(){

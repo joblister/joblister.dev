@@ -10,16 +10,17 @@ class Auth{
 	//corect login
 	
 
-	public static function attempt($user_name,$password) {
-		$user = User::findByUserName($user_name);
+	public static function attempt($attemptedUsername, $attemptedPassword) {
+		$user = User::findByUserName($attemptedUsername);
 		if ($user == null) {
 			return false;
 		}
-		$validPassword = password_verify($password,$user->password);
+		
+		$validPassword = password_verify($attemptedPassword,$user->password);
 		if ($validPassword == true) {
 			$_SESSION['logged_in_user'] = $user;
 		}
-		return array('user'=>$user_name,'password'=>$password);
+		return false;
 		
 		
 
@@ -28,8 +29,8 @@ class Auth{
 	}
 		
 	public static function check(){
-			$user = isset($_SESSION['logged_in_user']);
-		return $user;
+			
+		return isset($_SESSION['logged_in_user']);
 
 	} 
                                
