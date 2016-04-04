@@ -7,7 +7,6 @@ session_start();
 $post_id = Input::has('name')? Input::get('name'): 1;
 var_dump($post_id . ' =post_id');
 
-//name="comment" = $key
 $commentText = Input::get('comment');
 var_dump($_REQUEST);
 
@@ -22,9 +21,9 @@ if($commentText !='' || $commentText != null){
 	$comment['comment'] = Input::get('comment');
 	$comment['date'] = $date_posted;
 
-	postsModel::insertComment($comment);
+	commentsModel::insertComment($comment);
 
-	// header('Location: create_comment.php');
+	header('Location: oneSelectedPost.php');
 }
 
 ?>

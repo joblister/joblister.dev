@@ -2,6 +2,30 @@
 
 require_once '../Auth.php';
 require_once '../postsModel.php';
+require_once '../Input.php';
+var_dump($_REQUEST);
+$title = Input::has('title')? Input::get('title'): '';
+$content = Input::has('content')? Input::get('content'): '';
+$user_id = Auth::user()->id;
+$date_posted = strtotime('now');
+$date_posted = gmdate("Y-m-d H:i:s", $date_posted);
+
+var_dump($user_id);
+var_dump($date_posted);
+var_dump($title);
+var_dump($content);
+
+
+if(( $title != ''|| $title != null) && ($content != ''|| $content != null)){
+
+	$newPost = new postsModel();
+	$newPost->title = $title;
+	$newPost->content = $content;
+	$newPost->date = $date_posted;
+	$newPost->user_id = $user_id;
+	$newPost->save();
+
+}
 
 
 ?>
@@ -57,6 +81,10 @@ require_once '../postsModel.php';
 			color: green;
 		}
 
+		/*centers button*/
+		form{
+			text-align: center;
+		}
 
 
 	</style>
@@ -69,13 +97,14 @@ require_once '../postsModel.php';
 			<h1>Your Post will be added to Job listing page. <h1>
 			<h3>(Date will be attached automatically).</h3>
 			<hr>
-			<h3 class="sign-placeholders">Title</h3>
-		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" placeholder="Enter Title: " ></textarea>
-		    <h3 class="sign-placeholders">Content</h3>
-		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
-		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" style="display:none"></textarea>
-		    <a id="select-post" href="posts.php" name="create_post" type="submit">Save and Return to Job Listings</a>
-
+			<form>
+				<h3 class="sign-placeholders">Title</h3>
+			    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" placeholder="Enter Title: " ></textarea>
+			    <h3 class="sign-placeholders">Content</h3>
+			    <textarea type="text" class="form-control"  cols="80" id="inputlg-content" name="content"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
+			    <button id="select-post"  type="submit">Save and Return to Job Listings</button>
+			</form>
+					 
 		</div>
 
 	<script src="/js/practice.js"></script>
