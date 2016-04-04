@@ -7,7 +7,7 @@ require_once '../postsModel.php';
 
 extract(postsModel::paginate());
 
-postsModel::all();
+// postsModel::all();
 // var_dump($page);
 
 // var_dump($posts[0]['title']);

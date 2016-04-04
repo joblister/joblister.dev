@@ -74,7 +74,7 @@ require_once '../postsModel.php';
 		    <h3 class="sign-placeholders">Content</h3>
 		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
 		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" style="display:none"></textarea>
-		    <a id="select-post" href="posts.php" type="submit">Save and Return to Job Listings</a>
+		    <a id="select-post" href="posts.php" name="create_post" type="submit">Save and Return to Job Listings</a>
 
 		</div>
 

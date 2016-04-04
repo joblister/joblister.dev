@@ -5,24 +5,12 @@ require_once '../postsModel.php';
 // var_dump($_SESSION['logged_in_user']);
 
 extract(postsModel::paginate());
- 
+$post_id = Input::has('name')? Input::get('name'): 1;
 
-var_dump($posts[0]['title']);
-postsModel::all();
-
-$post_id = $_GET['name'];
-var_dump($post_id);
-postsModel::postId($post_id);
-extract(postsModel::postId($post_id));
+var_dump($post_id . ' = post id');
+$onePostArray = postsModel::postId($post_id);
 
 
-foreach ($posts as $row => $value){
-
-	if($posts[$row]['post_id'] == $post_id){
-	var_dump($posts[$row]['user_id']);
-	var_dump($posts[$row]['post_id']);
-	}
-}
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +73,7 @@ foreach ($posts as $row => $value){
 	
 		<div class="col-lrg-6">	
 			
-			<h1>Interested in this job? Click on the button below to respond.<h1>
+			<h1>Interested in this job? Click on the link below to respond.<h1>
 			<hr>
 			
 			<h3 class="sign-placeholders">Title</h3>
@@ -94,9 +82,9 @@ foreach ($posts as $row => $value){
 		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray['content']?> </textarea>
 		    <h3 class="sign-placeholders">Date</h3>
 		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray['date']?></textarea>
-		    <a id="select-post" type="submit" href="create_comment.php?name=<?= $posts[$row]['post_id']?>" >Click here to Comment</a>
+		    <a id="select-post" type="submit" href="create_comment.php?name=<?= $onePostArray['post_id']?>" >Click here to Comment</a>
 		 
-
+	   
 		</div>
 
 	<script src="/js/practice.js"></script>
