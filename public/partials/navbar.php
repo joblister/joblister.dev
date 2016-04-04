@@ -3,11 +3,12 @@ session_start();
 require_once '../Auth.php';
 require_once '../User.php';
 
-var_dump(User::findByUserName(($_SESSION['logged_in_user'])));
+
 if(isset($_SESSION['logged_in_user'])){
   var_dump($_SESSION['logged_in_user']);
+  $user= $_SESSION(['logged_in_user']);
+	var_dump($user);
 }
-
 if(Auth::check()) {
 	echo 'checking if user is already logged on' .PHP_EOL;
 	//header('Location:/posts.php');
