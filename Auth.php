@@ -4,6 +4,10 @@
 require_once '../Input.php';
 require_once '../User.php';
 
+if(session_status() !=PHP_SESSION_ACTIVE){
+
+	session_start();
+}
 
 class Auth{
 
@@ -19,7 +23,7 @@ class Auth{
 		$validPassword = password_verify($attemptedPassword,$user->password);
 		if ($validPassword == true) {
 			$_SESSION['logged_in_user'] = $user;
-			
+
 		}
 
 		return false;
