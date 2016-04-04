@@ -15,6 +15,7 @@ class Auth{
 	
 
 	public static function attempt($attemptedUsername, $attemptedPassword) {
+		global $user;
 		$user = User::findByUserName($attemptedUsername);
 		if ($user == null) {
 			return false;

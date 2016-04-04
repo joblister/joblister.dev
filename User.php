@@ -27,7 +27,8 @@ class User extends Model{
 
         $this->attributes['id']= $id;
 
-        return $id;
+        return $this->id;
+        
      
     }
 
