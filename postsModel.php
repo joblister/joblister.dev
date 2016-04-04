@@ -6,6 +6,8 @@ require_once 'User.php';
 
 class postsModel extends Model{
 
+    protected static $table = 'posts';
+
     public static function paginate(){
 
         self::dbConnect();
@@ -53,55 +55,44 @@ class postsModel extends Model{
            
 
     }
-//$user is tracked by session
-  public static function insertComment($arrayOfComments){
-        self::dbConnect();
+    
 
-        $insert = "INSERT INTO comments (comment,post_id,user_id,date) VALUES (:comment,:post_id,:user_id,:date_posted)"; 
+    protected function insert()
+    {
 
-        $stmt = self::$dbc->prepare($insert); 
-        $stmt->bindValue(':comment', $arrayOfComments['comment'], PDO::PARAM_STR);
-        $stmt->bindValue(':post_id', $arrayOfComments['post_id'], PDO::PARAM_INT);
-        $stmt->bindValue(':user_id',$arrayOfComments['user_id'], PDO::PARAM_STR);
-        $stmt->bindValue(':date_posted',$arrayOfComments['date'], PDO::PARAM_STR);
+        $stmt = self::$dbc->prepare("INSERT INTO " . static::$table . " (user_id,title,content,date) VALUES (:user_id,:title,:content,:date)"); 
+
+        $stmt->bindValue(':user_id', $this->attributes['user_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':title', $this->attributes['title'], PDO::PARAM_STR);
+        $stmt->bindValue(':content', $this->attributes['content'], PDO::PARAM_STR);
+        $stmt->bindValue(':date', $this->attributes['date'],PDO::PARAM_STR );
         $stmt->execute();
-    }
 
 
-      public static function insertPost($post_id){
-       
+        $post_id = self::$dbc->lastInsertId();
 
-        // $date_posted = strtotime('now');
-        // var_dump($date_posted);
-        // $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
-        // var_dump($date_posted);
+        $this->attributes['post_id']= $post_id;
 
-
-        // self::dbConnect();
-
-        // $stmt = self::$dbc->prepare("INSERT * FROM posts WHERE post_id = :post_id");
-
-        // $stmt->bindValue(':post_id', $post_id , PDO::PARAM_INT);
-
-        //  //execute gets its own line, t or false
-        // $stmt->execute();
-
-        // $onePostArray = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // return array('onePostArray' => $onePostArray);
-    
-
-    }
-    
-
-    protected function insert(){
-
-
+        return $this->post_id;
     }
 
     protected function update(){
 
-        
+
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare("UPDATE posts SET (user_id=:user_id,title=:title,content=:content,date=:date) WHERE post_id=:post_id") ; 
+
+        foreach ($this->attributes as $key=>$value) {
+
+            //":$key" refers to column name
+            $stmt->bindValue(":$key", $value, PDO::PARAM_STR);
+
+
+        }
+
+
+         $stmt->execute();
     }
 
 }

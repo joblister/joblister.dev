@@ -40,10 +40,6 @@ class User extends Model{
         //        so the object properly represents a DB record
 
 
-
-
-
-
     /** Update existing entry in the database */
     protected function update(){
 

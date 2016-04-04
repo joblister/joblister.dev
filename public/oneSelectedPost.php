@@ -2,14 +2,17 @@
 
 require_once '../Auth.php';
 require_once '../postsModel.php';
-// var_dump($_SESSION['logged_in_user']);
+require_once '../commentsModel.php';
+
 
 extract(postsModel::paginate());
 $post_id = Input::has('name')? Input::get('name'): 1;
 
 var_dump($post_id . ' = post id');
+
 $onePostArray = postsModel::postId($post_id);
 
+$comments = commentsModel::getPostComments($post_id);
 
 ?>
 
@@ -64,8 +67,6 @@ $onePostArray = postsModel::postId($post_id);
 			color: green;
 		}
 
-
-
 	</style>
 </head>
 <body>
@@ -83,7 +84,18 @@ $onePostArray = postsModel::postId($post_id);
 		    <h3 class="sign-placeholders">Date</h3>
 		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray['date']?></textarea>
 		    <a id="select-post" type="submit" href="create_comment.php?name=<?= $onePostArray['post_id']?>" >Click here to Comment</a>
-		 
+
+		   	<?php if(!empty($comments)): ?>
+
+			    <?php foreach($comments as $key => $value): ?>
+				  
+			        <textarea readonly cols="70"> <?= $value['date']?>,<?= $value['user_id']?>,<?= $value['comment']?>
+
+			        </textarea><br>
+
+		   		<?php endforeach; ?>
+
+		 	<?php endif; ?>
 	   
 		</div>
 
