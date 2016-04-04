@@ -1,6 +1,8 @@
 
 <?php
+require_once 'Auth.php';
 require_once 'Model.php';
+require_once 'User.php';
 
 class postsModel extends Model{
 
@@ -37,6 +39,7 @@ class postsModel extends Model{
 
         self::dbConnect();
 
+
         $stmt = self::$dbc->prepare("SELECT * FROM posts WHERE post_id = :post_id");
 
         $stmt->bindValue(':post_id', $post_id , PDO::PARAM_INT);
@@ -46,13 +49,49 @@ class postsModel extends Model{
 
         $onePostArray = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return array('onePostArray' => $onePostArray);
+        return $onePostArray;
            
 
     }
+//$user is tracked by session
+  public static function insertComment($arrayOfComments){
+        self::dbConnect();
+
+        $insert = "INSERT INTO comments (comment,post_id,user_id,date) VALUES (:comment,:post_id,:user_id,:date_posted)"; 
+
+        $stmt = self::$dbc->prepare($insert); 
+        $stmt->bindValue(':comment', $arrayOfComments['comment'], PDO::PARAM_STR);
+        $stmt->bindValue(':post_id', $arrayOfComments['post_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':user_id',$arrayOfComments['user_id'], PDO::PARAM_STR);
+        $stmt->bindValue(':date_posted',$arrayOfComments['date'], PDO::PARAM_STR);
+        $stmt->execute();
+    }
 
 
-// $_SESSION['logged_in_user'] = $user;
+      public static function insertPost($post_id){
+       
+
+        // $date_posted = strtotime('now');
+        // var_dump($date_posted);
+        // $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
+        // var_dump($date_posted);
+
+
+        // self::dbConnect();
+
+        // $stmt = self::$dbc->prepare("INSERT * FROM posts WHERE post_id = :post_id");
+
+        // $stmt->bindValue(':post_id', $post_id , PDO::PARAM_INT);
+
+        //  //execute gets its own line, t or false
+        // $stmt->execute();
+
+        // $onePostArray = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // return array('onePostArray' => $onePostArray);
+    
+
+    }
     
 
     protected function insert(){

@@ -191,22 +191,7 @@ class User extends Model{
          return $instance;
     }
 
-    public static function loggedInUser(){
-
-        self::dbConnect();
-
-        $stmt = self::$dbc->prepare('SELECT * FROM users WHERE user_name = $user' );
-
-        $stmt->execute();
-
-        $resultsAll = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return array($resultsAll, 'first_name'=>$first_name,'last_name'=>$last_name, 'user_name'=>$user_name, 'email'=>$email, 'password'=>$password);
-
-        // @TODO: Learning from the find method, return all the matching records
-    }
-
-
+   
 
 
 
