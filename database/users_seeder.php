@@ -27,6 +27,9 @@ $Users = [
 
       ['first_name' => 'Uma', 'last_name' => 'Thurman','user_name' => 'UmaT','email' => 'UmaUma@gmail.com',
      'password' => password_hash('uma', PASSWORD_DEFAULT) ],
+
+     ['first_name' => 'admin', 'last_name' => 'admin','user_name' => 'admin','email' => 'admin@admin.com',
+     'password' => 'admin']
 ];
 
 
@@ -49,6 +52,7 @@ $posts = [
     ['user_id' => 4,'title' => 'Seeking senior-level Lisp position in Austin.', 'content' => 'Expert-level programmer in Lisp. Resume and references available.','date' => '2016-04-01 07:33:33'],
     ['user_id' => 5,'title' => 'Seeking senior-level Lisp position in Austin.', 'content' => 'Expert-level programmer in Lisp. Resume and references available.','date' => '2016-04-01 07:33:33'],
     ['user_id' => 6,'title' => 'Seeking entry-level position in Ruby', 'content' => 'Entry-level programmer in Ruby with great resume. Willing to relocate.','date' => '2016-04-02 08:33:33'],
+     ['user_id' => 7,'title' => 'Seeking entry-level position anywhere', 'content' => 'Entry-level programmer. Youtube video course graduate living with parents.','date' => '2016-04-02 08:34:01'],
 ];
 $stmt = $dbc->prepare('INSERT INTO posts (user_id, title, content, date)
     VALUES (:user_id, :title, :content,:date)');

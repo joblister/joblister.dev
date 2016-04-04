@@ -14,7 +14,7 @@ class User extends Model{
     protected static $table = 'users';
     /** Insert a new entry into the database */
     protected function insert(){
-        $stmt = self::$dbc->prepare("INSERT INTO " . static::$table . " (first_name,last_name,user_name, email,password) VALUES (:first_name,:last_name,:user_name,:email,:password)"); 
+        $stmt = self::$dbc->prepare("INSERT INTO " . static::$table . " (first_name,last_name,user_name,email,password) VALUES (:first_name,:last_name,:user_name,:email,:password)"); 
         $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
         $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
         $stmt->bindValue(':user_name', $this->attributes['user_name'], PDO::PARAM_STR);

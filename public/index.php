@@ -6,6 +6,7 @@ if(isset($_SESSION['logged_in_user'])){
 
 ?>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 

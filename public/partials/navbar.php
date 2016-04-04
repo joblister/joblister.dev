@@ -6,8 +6,12 @@ require_once '../User.php';
 
 if(isset($_SESSION['logged_in_user'])){
   var_dump($_SESSION['logged_in_user']);
-  $user= $_SESSION(['logged_in_user']);
-	var_dump($user);
+
+
+
+  $user = $_SESSION['logged_in_user'];
+  var_dump($user);
+>>>>>>> 6521e0a29f14c0527f102d29be84d1dd4a793b3e
 }
 if(Auth::check()) {
 	echo 'checking if user is already logged on' .PHP_EOL;
@@ -112,7 +116,7 @@ if(!empty($_POST['user_name']) && !empty($_POST['password'])&&isset($_POST['log-
 	      <ul class="nav navbar-nav">
 			<li><a class="nav-text" href="index.php" id=''>Home</a></li>
 			<li><a class="nav-text" href="account.php"  id='account' >Account</a></li>
-			<li><a class="nav-text" href=""  id='' >Create</a></li>
+			<li><a class="nav-text" href="create_post.php"  id='' >Create</a></li>
 			<li><a class="nav-text" href="logout.php"  id='log-out' >Logout</a></li>
 			<li><a class="nav-text" href="" data-toggle="modal" data-target=".bs-example-modal-sm">Log In/Sign Up</a></li>
 		  </ul>	     
