@@ -9,7 +9,7 @@ require_once '../User.php';
 
 
 if(isset($_SESSION['logged_in_user'])){
-  var_dump($_SESSION['logged_in_user']);
+ 
   $user = $_SESSION['logged_in_user'];
 
 
@@ -27,22 +27,17 @@ if(Auth::check()) {
 	//die();
 }
 
-if(!empty($_POST['user_name']) && !empty($_POST['password'])&&isset($_POST['log-in'])) {
+if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['log-in'])) {
 
 
-	$attemptedUsername = Input::has('user_name') ?(Input::get('user_name')): "";
-	$attemptedPassword = Input::has('password') ?(Input::get('password')): "";
+	$attemptedUsername = Input::has('user_name') ? (Input::get('user_name')): "";
+	$attemptedPassword = Input::has('password') ? (Input::get('password')): "";
 	
-	var_dump($attemptedUsername, $attemptedPassword);
-
 	
-	if(Auth::attempt($attemptedUsername, $attemptedPassword)){
-	header('Location:/posts.php');
-
-	die();
-	}
-	var_dump(Auth::attempt($attemptedUsername, $attemptedPassword));
-	
+	if (Auth::attempt($attemptedUsername, $attemptedPassword)){
+		header('Location:/posts.php');
+		die();
+	}	
 
 	if(Auth::check()) {
 		echo 'log in 1';

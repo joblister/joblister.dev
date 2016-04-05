@@ -7,7 +7,7 @@ abstract class Model
 {
     /** @var PDO|null Connection to the database */
     protected static $dbc = null;
-    protected static $table = 'user';
+    
 
     /** @var array Database values for a single record. Array keys should be column names in the DB */
     protected $attributes = array();
@@ -38,6 +38,8 @@ abstract class Model
         if (!self::$dbc) {
 
             $dbc = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME,DB_USER,PASSWORD);
+            $dbc ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             self::$dbc = $dbc;
            
             // @TODO: Connect to database

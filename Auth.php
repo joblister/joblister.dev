@@ -11,25 +11,24 @@ if(session_status() !=PHP_SESSION_ACTIVE){
 
 class Auth{
 
-	//corect login
+	//correct login
 	
 
 	public static function attempt($attemptedUsername, $attemptedPassword) {
-		global $user;
+		
 		$user = User::findByUserName($attemptedUsername);
 		if ($user == null) {
 			return false;
 		}
 		
 		$validPassword = password_verify($attemptedPassword,$user->password);
-		if ($validPassword == true) {
+		if ($validPassword) {
+			//object living in the session
 			$_SESSION['logged_in_user'] = $user;
-
+			return true;
 		}
 
 		return false;
-		
-
 	}
 		
 	public static function check(){
