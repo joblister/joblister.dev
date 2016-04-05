@@ -29,8 +29,8 @@ $sql = <<<QUERY
 CREATE TABLE posts(
 post_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 user_id INT UNSIGNED NOT NULL,
-title VARCHAR(100) NOT NULL,
-content VARCHAR (500) NOT NULL,
+title VARCHAR(200) NOT NULL,
+content TEXT NOT NULL,
 date DATETIME,
 PRIMARY KEY(post_id),
 foreign key(user_id) references users(id)
@@ -46,7 +46,7 @@ $dbc->exec($sql);
  $sql = <<<QUERY
  CREATE TABLE comments(
  comment_id INT UNSIGNED NOT NULL AUTO_INCREMENT,
- comment VARCHAR(500) NOT NULL,
+ comment TEXT NOT NULL,
  post_id INT UNSIGNED NOT NULL,
  user_id INT UNSIGNED NOT NULL,
  date DATETIME,

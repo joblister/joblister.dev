@@ -3,6 +3,7 @@
 require_once '../Auth.php';
 require_once '../postsModel.php';
 require_once '../Input.php';
+require_once '../commentsModel.php';
 session_start();
 $post_id = Input::has('name')? Input::get('name'): 1;
 var_dump($post_id . ' =post_id');
