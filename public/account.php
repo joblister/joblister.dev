@@ -2,6 +2,68 @@
 require_once '../Auth.php';
 require_once '../Model.php';
 require_once '../User.php';
+require_once '../postsModel.php';
+require_once '../commentsModel.php';
+var_dump($_POST);
+
+$id = Auth::user()->id;
+$allPostsbyUser = postsModel::allPostsbyUser($id);
+$allCommentsbyUser = commentsModel::allCommentsbyUser($id);
+var_dump($allPostsbyUser);
+var_dump($allCommentsbyUser);
+var_dump($allPostsbyUser[0]['title']);
+
+
+//catch posts for update below:
+$post_title = Input::has('userPostsTitle')? Input::get('userPostsTitle'): 1;
+var_dump($post_title . ' =post_title');
+$post_content = Input::has('userPostsContent')? Input::get('userPostsContent'): 1;
+$post_id = $value['post_id'];
+
+var_dump($post_content . ' =post_content');  
+$date_posted = strtotime('now');
+$date_posted = gmdate("Y-m-d H:i:s", $date_posted);
+var_dump($_REQUEST);  
+
+
+
+if(( $post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_update_btn')){
+
+	
+	$newPost = new postsModel();
+	$newPost->user_id = Auth::user()->id;
+	$newPost->content = $post_content;
+	$newPost->date = $date_posted;
+	$newPost->title = $post_title;
+	//$newPost->post_id = $value['post_id'];
+	
+	$newPost->save();
+
+
+	
+
+	//header('Location: oneSelectedPost.php');
+}
+//end catch
+
+if(( $post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_delete_btn')){
+
+	
+	$deletePost = new postsModel();
+	$deletePost->user_id = Auth::user()->id;
+	$deletePost->content = $post_content;
+	$deletePost->date = $date_posted;
+	$deletePost->title = $post_title;
+	$deletePost->post_id = $post_id;
+	$deletePost->deletePost($post_id);
+	
+
+
+	
+
+	//header('Location: oneSelectedPost.php');
+}
+
 
 
 
@@ -106,6 +168,21 @@ function userInput($dbc) {
   	 	
   	 }
 
+  	 .postbtns{
+  	 	display: flex;
+  	 	flex-direction: row;
+  	 	justify-content: center;
+  	 	margin:10px;
+  	 }
+  	 #comment_delete_btn,#post_delete_btn{
+			margin-right: 30px;
+  	 }
+
+  	  #comment_update_btn,#post_update_btn{
+  	  		margin-left: 30px;
+  	 	
+  	 }
+
   	 </style>
 
 </head>
@@ -134,7 +211,7 @@ function userInput($dbc) {
  	    <div class='line'>
         </div>	
 		<div class="col-md-8">
-			<?php if(!empty($errors)): ?>
+			<?php if(!empty($errors) && (Input::get('post_update_btn') == null) && (Input::get('post_delete_btn') == null) && (Input::get('comment_update_btn') == null) && (Input::get('comment_delete_btn') == null)): ?>
 		 		<?php foreach ($errors as $error): ?>
 		 		<h3><?= $error['first_name']?></h3>
 		 		<h3><?= $error['last_name']?></h3>
@@ -160,11 +237,47 @@ function userInput($dbc) {
 			 
 
 
-		</div>
-
+		</div>  <!-- end col-md-8 -->
+	
+		
 
 
 	</div>  <!-- end container -->
+	<div class='commentsAndPost'>
+
+			<h3 class="sign-placeholders3">All My Post</h3>
+			<?php if(!empty($allPostsbyUser)): ?>
+				<?php foreach ($allPostsbyUser as $key => $value): ?>
+				<form method ="POST">
+				 	<textarea maxlength="200" type="text" class="form-control form3" name="userPostsTitle" aria-describedby="basic-addon1"><?= $value['title'] ?>, posted on:  <?= $value['date'] ?></textarea>
+				 	<br>
+				 	<textarea  type="text" class="form-control form3" name="userPostsContent" aria-describedby="basic-addon1"><?= $value['content'] ?></textarea>
+				 	
+				 	<div class='postbtns'>
+				 		<button  id="post_delete_btn" name="post_delete_btn" type="submit" value="post_delete_btn" class="btn btn-default">delete</button>
+				 		<button  id="post_update_btn" name="post_update_btn" type="submit" value="post_update_btn"  class="btn btn-default">update</button>
+					</div>
+				 	<?php endforeach; ?>
+				</form>	
+			<?php endif; ?>
+
+			<h3 class="sign-placeholders3">All My Comments</h3>
+			<?php if(!empty($allCommentsbyUser)): ?>
+				<?php foreach ($allCommentsbyUser as $key => $value): ?>
+				 <form method ="POST">
+				  	<textarea  type="text" class="form-control form3" name="userComments" aria-describedby="basic-addon1"><?= $value['comment'] ?></textarea>
+				  	<div class='postbtns'>
+				 		<button  id="comment_delete_btn" name="comment_delete_btn" type="submit" value="comment_delete_btn" class="btn btn-default">delete</button>
+				 		<button  id="comment_update_btn" name="comment_update_btn" type="submit" value="comment_update_btn"  class="btn btn-default">update</button>
+					</div>
+
+				 	<?php endforeach; ?>
+				 </form>
+			<?php endif; ?>
+
+		</div>
+
+
 
 
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

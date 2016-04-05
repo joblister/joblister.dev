@@ -57,7 +57,7 @@ class commentsModel extends Model{
 
         $this->attributes['comment_id']= $comment_id;
 
-        return $this->commentt_id;
+        return $this->comment_id;
     }
 
     protected function update(){
@@ -79,12 +79,12 @@ class commentsModel extends Model{
 
 
 
-    protected function allCommentsbyUser(Auth::user()->id){
+    public static function allCommentsbyUser($id){
 
 
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare("SELECT * FROM comments WHERE id = :id") ; 
+        $stmt = self::$dbc->prepare("SELECT * FROM comments WHERE user_id = :id") ; 
 
         $stmt->bindValue(':id', $id , PDO::PARAM_INT);
 
@@ -97,5 +97,5 @@ class commentsModel extends Model{
 
 }
 
-}
+
 ?>

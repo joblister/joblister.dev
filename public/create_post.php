@@ -101,7 +101,7 @@ if(( $title != ''|| $title != null) && ($content != ''|| $content != null)){
 				<h3 class="sign-placeholders">Title</h3>
 			    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" placeholder="Enter Title: " ></textarea>
 			    <h3 class="sign-placeholders">Content</h3>
-			    <textarea type="text" class="form-control"  cols="80" id="inputlg-content" name="content"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
+			    <textarea type="text" maxlength="200" class="form-control"  cols="80" id="inputlg-content" name="content"  aria-describedby="basic-addon1" placeholder="Enter Content: "></textarea>
 			    <button id="select-post"  type="submit">Save and Return to Job Listings</button>
 			</form>
 					 

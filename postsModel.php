@@ -1,4 +1,4 @@
-
+t
 <?php
 require_once 'Auth.php';
 require_once 'Model.php';
@@ -96,12 +96,12 @@ class postsModel extends Model{
     }
 
 
-    protected function allPostsbyUser(Auth::user()->id){
+    public static function allPostsbyUser($id){
 
 
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare("SELECT * FROM posts WHERE id = :id") ; 
+        $stmt = self::$dbc->prepare("SELECT * FROM posts WHERE user_id = :id") ; 
 
         $stmt->bindValue(':id', $id , PDO::PARAM_INT);
 
@@ -110,6 +110,21 @@ class postsModel extends Model{
         $allPostsbyUser = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         return $allPostsbyUser;
+    }
+
+
+     public static function deletePost($post_id){
+
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare("DELETE FROM posts WHERE post_id = :post_id");
+
+        $stmt->bindValue(':post_id', $post_id , PDO::PARAM_INT);
+
+        //execute gets its own line, t or false
+        $stmt->execute();
+
+
     }
 
 
