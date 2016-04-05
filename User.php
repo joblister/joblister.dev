@@ -19,17 +19,14 @@ class User extends Model{
         $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
         $stmt->bindValue(':user_name', $this->attributes['user_name'], PDO::PARAM_STR);
         $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
-        $stmt->bindValue(':password', password_hash($this->attributes['password'], PASSWORD_DEFAULT));
+        $stmt->bindValue(':password', password_hash($this->attributes['password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
         $stmt->execute();
-
 
         $id = self::$dbc->lastInsertId();
 
         $this->attributes['id']= $id;
 
-        return $this->id;
-        
-     
+        return $this->id;     
     }
 
         // @TODO: Use prepared statements to ensure data security
@@ -41,23 +38,23 @@ class User extends Model{
 
 
     /** Update existing entry in the database */
-    protected function update(){
+    protected function update()
+    {
 
 
             self::dbConnect();
 
-            $stmt = self::$dbc->prepare("UPDATE user SET (first_name=:first_name,last_name=:last_name,user_name=:user_name,email=:email,password=:password) WHERE id=:id") ; 
+            $stmt = self::$dbc->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name, user_name = :user_name, email = :email WHERE id = :id") ; 
+            
+            //":$key" refers to column name
+            $stmt->bindValue(":first_name", $this->first_name, PDO::PARAM_STR);
+            $stmt->bindValue(":last_name", $this->last_name, PDO::PARAM_STR);
+            $stmt->bindValue(":user_name", $this->user_name, PDO::PARAM_STR);
+            $stmt->bindValue(":email", $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(":id", $this->id, PDO::PARAM_INT);    
 
-            foreach ($this->attributes as $key=>$value) {
-
-                //":$key" refers to column name
-                $stmt->bindValue(":$key", $value, PDO::PARAM_STR);
-
-
-            }
-    
-
-             $stmt->execute();
+            $result = $stmt->execute();
+            var_dump($result);
     }
         // @TODO: Use prepared statements to ensure data security
 
@@ -90,12 +87,12 @@ class User extends Model{
         // @TODO: Store the result in a variable named $result
 
         // The following code will set the attributes on the calling object based on the result variable's contents
-        // $instance = null;
-        // if ($result) {
-        //     $instance = new static($result);
-        // }
-        // return $instance;
-        return array('result'=>$result,'id'=>$id);
+         $instance = null;
+         if ($result) {
+             $instance = new static($result);
+         }
+         return $instance;
+        //return array('result'=>$result,'id'=>$id);
     }
 
     /**
@@ -133,6 +130,34 @@ class User extends Model{
         $stmt->execute();
 
 
+    }
+
+     
+
+    public static function findByEmail($email){
+
+        // Get connection to the database
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare('SELECT * FROM users WHERE email = :email');
+
+        $stmt->bindValue(':email', $email , PDO::PARAM_STR);
+
+        //execute gets its own line, t or false
+        $stmt->execute();
+
+        $result=$stmt->fetch(PDO::FETCH_ASSOC);
+
+        // @TODO: Create select statement using prepared statements
+
+        // @TODO: Store the result in a variable named $result
+
+        // The following code will set the attributes on the calling object based on the result variable's contents
+        $instance = null;
+        if ($result) {
+            $instance = new static($result);
+        }
+        return $instance;
     }
 
       public static function findByUserName($user_name){
@@ -192,8 +217,3 @@ class User extends Model{
 
 
 }
-
-
-
-
-
