@@ -81,7 +81,7 @@ class postsModel extends Model{
 
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare("UPDATE posts SET (user_id=:user_id,title=:title,content=:content,date=:date) WHERE post_id=:post_id") ; 
+        $stmt = self::$dbc->prepare("UPDATE posts SET user_id=:user_id,title=:title,content=:content,date=:date WHERE post_id=:post_id") ; 
 
         foreach ($this->attributes as $key=>$value) {
 
@@ -94,6 +94,25 @@ class postsModel extends Model{
 
          $stmt->execute();
     }
+
+
+    protected function allPostsbyUser(Auth::user()->id){
+
+
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare("SELECT * FROM posts WHERE id = :id") ; 
+
+        $stmt->bindValue(':id', $id , PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $allPostsbyUser = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $allPostsbyUser;
+    }
+
+
 
 }
 ?>
