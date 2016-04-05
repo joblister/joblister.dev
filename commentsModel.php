@@ -40,15 +40,62 @@ class commentsModel extends Model{
 
     }
 
-    protected function insert(){
+    
+    protected function insert()
+    {
+
+        $stmt = self::$dbc->prepare("INSERT INTO " . static::$table . " (comment,post_id,user_id,date) VALUES (:comment,:post_id,:user_date,:date)"); 
+
+        $stmt->bindValue(':user_id', $this->attributes['user_id'], PDO::PARAM_INT);
+        $stmt->bindValue(':comment', $this->attributes['comment'], PDO::PARAM_STR);
+        $stmt->bindValue(':post_id', $this->attributes['post_id'], PDO::PARAM_STR);
+        $stmt->bindValue(':date', $this->attributes['date'],PDO::PARAM_STR );
+        $stmt->execute();
 
 
+        $comment_id = self::$dbc->lastInsertId();
+
+        $this->attributes['comment_id']= $comment_id;
+
+        return $this->commentt_id;
     }
 
     protected function update(){
 
-        
+
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare("UPDATE comments SET comment=:comment,post_id=:post_id,user_id=:user_id,date=:date WHERE comment_id=:comment_id") ; 
+
+        foreach ($this->attributes as $key=>$value) {
+
+            //":$key" refers to column name
+            $stmt->bindValue(":$key", $value, PDO::PARAM_STR);
+
+        }
+
+         $stmt->execute();
     }
+
+
+
+    protected function allCommentsbyUser(Auth::user()->id){
+
+
+        self::dbConnect();
+
+        $stmt = self::$dbc->prepare("SELECT * FROM comments WHERE id = :id") ; 
+
+        $stmt->bindValue(':id', $id , PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $allCommentsbyUser = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $allCommentsbyUser;
+    }
+
+}
 
 }
 ?>
