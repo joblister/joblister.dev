@@ -23,153 +23,83 @@ Auth::logout();
 	<meta charset="UTF-8">
 	<title>Log Out</title>
 	<style>
+
 		#block1{
+			position:relative;
 			background-color: #199AEE;
 			height:20em;
-			left:24em;
+			left:10em;
 			z-index: 1;
+			margin-right: 10px;
+  	 	
+  	 	}
+		
+
+		#block2{
+			position:relative;
+			background-color: #199AEE;
+			height:20em;
+			left:10em;
+			z-index: 1;
+			margin-right: 10px;
 		}
 
-		#block2 {
-			height: 20em;
-    		left: 23em;
-    		top: 20em;
-    		z-index: 2;
-    		background-color: #08486E;
-		}
-
-		#block3 {
-    		height: 20em;
-    		left: 23em;
-    		top: 20em;
-		    z-index: 2;
-		    background-color: #07ABF3;
-		}
-		#block4 {
-			height: 20em;
-    		left: -7em;
-    		top: 0em;
-    		z-index: 2;
-    		background-color: #115FA1;
-		}
-
-		#block5 {
-			height: 20em;
-    		right: 7em;
-    		z-index: 2;
-    		background-color: #199AEE;
-		}
-
-		.logout-txt{
-			    position: relative;
-    			text-align: center;
-    			right: 8em;
-    			top: 1em;
-    			z-index: 0;
-		}
 		.hal {
-			
-    		top: -250px;
-			
+			position: center;
+		    left: 0px;
+		    top: 0px;
+		    z-index: -1;
 		}
+    		  
 
-		#bye {
-			position: relative;
-    		top: -7em;
-    		left: 10px;
-    		z-index: 0;
+    	}
+
+    	#bye {
+	    position: relative;
+	    top:10px;
+	    z-index:0;
+	    }
+
+		@media (max-width: 400px) {
+			
+
 		}
 		
-		@media (max-width: 400px) {
-			#block1{
-			background-color: #199AEE;
-			height:20em;
-			left:24em;
-			z-index: 1;
-		}
-
-		#block2 {
-			height: 20em;
-    		left: 23em;
-    		top: 20em;
-    		z-index: 2;
-    		background-color: #08486E;
-		}
-
-		#block3 {
-    		height: 20em;
-    		left: 23em;
-    		top: 20em;
-		    z-index: 2;
-		    background-color: #07ABF3;
-		}
-
-		#block4 {
-			height: 20em;
-    		left: -7em;
-    		top: 0em;
-    		z-index: 2;
-    		background-color: #115FA1;
-		}
-
-		.logout-txt{
-			position: relative;
-    		text-align: center;
-    		right: 8em;
-    		top: 1em;
-    		z-index: 0;
-		}
-		.hal {
-			
-    		top: -250px;
-			
-		}
-
-		#bye {
-			position: relative;
-    		top: -7em;
-    		left: 10px;
-    		z-index: 0;
-		}
-
-		#block5 {
-			height: 20em;
-    		right: 7em;
-    		z-index: 2;
-    		background-color: #199AEE;
-		}
-
-
-		}
 		
 
 
 	</style>
 </head>
 <body>
-	<div id="block1" class="col-sm-2 blue-block">
-	</div>
+	
+	 
+		<div class="top hatch">
+			<div id="block1" class="col-sm-2 blue-block"></div>
+			<div id="block1" class="col-sm-2 blue-block"></div>
+			<div id="block1" class="col-sm-2 blue-block"></div>
+			<div id="block1" class="col-sm-2 blue-block"></div>
+		</div>	
+		
+	
+		<img class="col-md-2 hal" src="/img/hal.gif" alt="HAL 9000">
+	
+      	
+		<h1 id="bye" class='logout-txt'>Farewell..</h1>
+		<div class="bottom hatch">
+			<div id="block2" class="col-sm-2 blue-block"></div>
+			<div id="block2" class="col-sm-2 blue-block"></div>
+			<div id="block2" class="col-sm-2 blue-block"></div>
+			<div id="block2" class="col-sm-2 blue-block"></div>
+		</div>
 
-	<div id="block2" class="col-sm-2 blue-block2">
-	</div>
-
-	<div id="block3" class="col-sm-2 blue-block3">
-	</div>
-
-	<div id="block4" class="col-sm-2 blue-block4">
-	</div>
-
-	<div id="block5" class="col-sm-2 blue-block5">
-	</div>
+	
 
 
 
 
 	
 	
-    <img class="hal" src="/img/hal.gif" alt="HAL 9000">
-      
-	<h1 id="bye" class='logout-txt'>Farewell..</h1>
+   
 
 
 
@@ -177,23 +107,25 @@ Auth::logout();
 <script>
 "use strict";
 
-	var exitLogout =setInterval(function newDoc() {
-   window.location.assign("index.php")
-}, 2000);
+	//var exitLogout =setInterval(function newDoc() {
+   //window.location.assign("index.php")
+//}, 2000);
 
 
-$("#block1").animate({
-    left: "=250px",
-    bottom:  "=100px"
-}, 500);
+ 
+$( document ).ready(function() {
+    console.log( "ready!" );
 
 
+	 $("#block1").animate({
+	    
+	    top:  "+=50px"
+	}, 500);
+	console.log('this worked');
 
-
-
-	
+});	
 	   
-	
+	 
 
 	
 
