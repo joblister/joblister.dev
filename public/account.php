@@ -188,11 +188,13 @@ function userInput($dbc) {
 		<div class="col-md-8">
 			<?php if(!empty($errors) && (Input::get('post_update_btn') == null) && (Input::get('post_delete_btn') == null) && (Input::get('comment_update_btn') == null) && (Input::get('comment_delete_btn') == null)): ?>
 		 		<?php foreach ($errors as $error): ?>
+
 			 		<h3><?= $error['first_name']?></h3>
 			 		<h3><?= $error['last_name']?></h3>
 			 		<h3><?= $error['user_name']?></h3>
 			 		<h3><?= $error['email']?></h3>
 		 		<?php endforeach; ?>
+
 		 	<?php endif; ?>
 		<form method="POST">
 		 		 
