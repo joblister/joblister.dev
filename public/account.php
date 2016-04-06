@@ -200,7 +200,8 @@ function userInput($dbc) {
 		 		<h3><?= $error['user_name']?></h3>
 		 		<h3><?= $error['email']?></h3>
 		 		
-		 		<?php endforeach; ?>
+		 	<?php endforeach; ?>
+				 <p><?= $error ?></p><br>
 		 	<?php endif; ?>
 		<form method="POST">
 		 		 
