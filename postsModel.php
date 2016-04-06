@@ -51,11 +51,22 @@ class postsModel extends Model{
 
         $onePostArray = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $onePostArray;
-           
+          $instance = null;
+         if ($onePostArray) {
+
+             $instance = new static($onePostArray);
+         }
+         return $instance;
 
     }
     
+
+
+
+
+
+
+
 
     protected function insert()
     {
@@ -81,9 +92,9 @@ class postsModel extends Model{
 
         self::dbConnect();
 
-        $stmt = self::$dbc->prepare("UPDATE posts SET user_id=:user_id,title=:title,content=:content,date=:date WHERE post_id=:post_id") ; 
+        $stmt = self::$dbc->prepare("UPDATE posts SET  title = :title, content = :content, date = :date WHERE post_id = :post_id") ; 
 
-        foreach ($this->attributes as $key=>$value) {
+        foreach ($this->attributes as $key => $value) {
 
             //":$key" refers to column name
             $stmt->bindValue(":$key", $value, PDO::PARAM_STR);
