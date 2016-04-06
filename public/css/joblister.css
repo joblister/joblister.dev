@@ -198,6 +198,11 @@
 .account-info {
   color:#DCDCDC;
 }
+
+.welcome-user {
+      color: #ededed;
+
+}
 @media (max-width: 400px) {
     
     .jumbotron {

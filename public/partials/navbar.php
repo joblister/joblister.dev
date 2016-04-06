@@ -14,6 +14,7 @@ if(isset($_SESSION['logged_in_user'])){
 
 
 
+
  //if(!isset($_SESSION['logged_in_user'])){
 	//echo 'You are not logged in, please sign in or sign up';
 	//header('Location:/index.php');
@@ -122,6 +123,7 @@ if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['lo
 			<li><a class="nav-text" href="create_post.php"  id='' >Create</a></li>
 			<li><a class="nav-text" href="logout.php"  id='log-out' >Logout</a></li>
 			<li><a class="nav-text" href="" data-toggle="modal" data-target=".bs-example-modal-sm">Log In/Sign Up</a></li>
+			<li class="welcome-user">Welcome <?= $user->user_name ?></li>
 		  </ul>	     
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
