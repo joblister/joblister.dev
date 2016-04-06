@@ -7,54 +7,47 @@ require_once '../commentsModel.php';
 // var_dump($_POST);
 $user = $_SESSION['logged_in_user'];
 var_dump($user);
-
+var_dump($_POST);
+$post_id = Input::has('name')? Input::get('name'): 1;
 $id = Auth::user()->id;
 $allPostsbyUser = postsModel::allPostsbyUser($id);
 // var_dump($allPostsbyUser[0]['title']);
 // var_dump($allPostsbyUser);
-
-
 $allCommentsbyUser = commentsModel::allCommentsbyUser($id);
 // var_dump($allCommentsbyUser);
 
-/**  VALUE LIST  **/
 $post_title = Input::has('userPostsTitle')? Input::get('userPostsTitle'): 1;
 $post_content = Input::has('userPostsContent')? Input::get('userPostsContent'): 1; 
 $date_posted = strtotime('now');
 $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
 $post_id = Input::get('updatePostId');
 $user_id = Auth::user()->id;
-var_dump($post_id . 'post id');
+var_dump($post_id . ' =post id');
+var_dump($user_id . ' =user_id');
+var_dump($date_posted . ' =date_posted');
+var_dump($post_content);
+var_dump($post_title . ' =post_title');
 
- 
-/**  VALUE LIST END **/
 
-/**  UPDATE POST  **/
 if(($post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_update_btn')){
-	// $postArray = postsModel::postId($post_id);
-	// $postArray->user_id = $user_id;
-	// $postArray->post_id = $post_content;
-	// $postArray->date_posted = $date_posted;
-	// $postArray->title = $post_title;
-	// $postArray->save();
-	//header('Location: oneSelectedPost.php');
+	$postArrayUpdate = postsModel::postId($post_id);
+	$postArrayUpdate->user_id = $user_id;
+	$postArrayUpdate->content = $post_content;
+	$postArrayUpdate->date = $date_posted;
+	$postArrayUpdate->title = $post_title;
+	$postArrayUpdate->post_id = $post_id;
+	$postArrayUpdate->save();
+	header('Location: posts.php');
 }
-
-/**   DELETE POST  **/
 
 if(($post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_delete_btn')){
-	$deletePost = new postsModel();
-	$deletePost->user_id = Auth::user()->id;
-	$deletePost->content = $post_content;
-	$deletePost->date = $date_posted;
-	$deletePost->title = $post_title;
-	$deletePost->post_id = $post_id;
-	$deletePost->deletePost($post_id);
 
-	//header('Location: oneSelectedPost.php');
+	postsModel::deletePost($post_id);
+
+	header('Location: posts.php');
 }
 
-/****************/
+
 
 if(!empty($_POST)){
 	extract(userInput($dbc));
@@ -195,11 +188,10 @@ function userInput($dbc) {
 		<div class="col-md-8">
 			<?php if(!empty($errors) && (Input::get('post_update_btn') == null) && (Input::get('post_delete_btn') == null) && (Input::get('comment_update_btn') == null) && (Input::get('comment_delete_btn') == null)): ?>
 		 		<?php foreach ($errors as $error): ?>
-		 		<h3><?= $error['first_name']?></h3>
-		 		<h3><?= $error['last_name']?></h3>
-		 		<h3><?= $error['user_name']?></h3>
-		 		<h3><?= $error['email']?></h3>
-		 		
+			 		<h3><?= $error['first_name']?></h3>
+			 		<h3><?= $error['last_name']?></h3>
+			 		<h3><?= $error['user_name']?></h3>
+			 		<h3><?= $error['email']?></h3>
 		 		<?php endforeach; ?>
 		 	<?php endif; ?>
 		<form method="POST">
@@ -241,13 +233,14 @@ function userInput($dbc) {
 			<h3 class="sign-placeholders3">All My Comments</h3>
 			<?php if(!empty($allCommentsbyUser)): ?>
 				<?php foreach ($allCommentsbyUser as $key => $value): ?>
-					 <form method ="POST">
-					  	<textarea  type="text" class="form-control form3" name="userComments" aria-describedby="basic-addon1"><?= $value['comment'] ?></textarea>
-					  	<div class='postbtns'>
-					 		<button  id="comment_delete_btn" name="comment_delete_btn" type="submit" value="comment_delete_btn" class="btn btn-default">delete</button>
-					 		<button  id="comment_update_btn" name="comment_update_btn" type="submit" value="comment_update_btn"  class="btn btn-default">update</button>
-						</div>
-					 </form>
+				 <form method ="POST">
+				 	<textarea  type="text"  name="updateCommentId" cols="3" rows="1" value="<?= $value['comment_id']?> "aria-describedby="basic-addon1" readonly><?= $value['comment_id'] ?></textarea>
+				  	<textarea  type="text" class="form-control form3" name="userComments" aria-describedby="basic-addon1"><?= $value['comment'] ?></textarea>
+				  	<div class='postbtns'>
+				 		<button  id="comment_delete_btn" name="comment_delete_btn" type="submit" value="comment_delete_btn" class="btn btn-default">delete</button>
+				 		<button  id="comment_update_btn" name="comment_update_btn" type="submit" value="comment_update_btn"  class="btn btn-default">update</button>
+					</div>
+				 </form>
 				 <?php endforeach; ?>
 			<?php endif;?>
 

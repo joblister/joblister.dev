@@ -3,9 +3,10 @@
 require_once '../Auth.php';
 require_once '../postsModel.php';
 require_once '../commentsModel.php';
-
+require_once 'account.php';
 
 extract(postsModel::paginate());
+
 $post_id = Input::has('name')? Input::get('name'): 1;
 
 var_dump($post_id . ' = post id');
@@ -73,25 +74,27 @@ $comments = commentsModel::getPostComments($post_id);
 	<?php include 'partials/navbar.php';?>
 	
 		<div class="col-lrg-6">	
-			
-			<h1>Interested in this job? Click on the link below to respond.<h1>
-			<hr>
-			
-			<h3 class="sign-placeholders">Title</h3>
-		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" readonly><?= $onePostArray->title ?></textarea>
-		    <h3 class="sign-placeholders">Content</h3>
-		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray->content ?> </textarea>
-		    <h3 class="sign-placeholders">Date</h3>
-		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray->date ?></textarea>
-		    <a id="select-post" type="submit" href="create_comment.php?name=<?= $onePostArray['post_id']?>" >Click here to Comment</a>
+			<?php if(!empty($onePostArray)): ?>
+				<h1>Interested in this job? Click on the link below to respond.<h1>
+				<hr>
+				
+				<h3 class="sign-placeholders">Title</h3>
+			    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" readonly><?= $onePostArray->title ?></textarea>
+			    <h3 class="sign-placeholders">Content</h3>
+			    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray->content ?> </textarea>
+			    <h3 class="sign-placeholders">Date</h3>
+			    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray->date ?></textarea>
+			    <a id="select-post"  href="create_comment.php?name=<?= $onePostArray->post_id ?>">Click here to Comment</a>
+		    <?php endif; ?>
 
 		   	<?php if(!empty($comments)): ?>
 
 			    <?php foreach($comments as $key => $value): ?>
 				  
-			        <textarea readonly cols="70"> <?= $value['date']?>,<?= $value['user_id']?>,<?= $value['comment']?>
+			        <textarea readonly cols="70"><?= $value['date']?></textarea>
+			        <textarea readonly cols="70"><?= $value['user_id']?></textarea>
+			        <textarea readonly cols="70"><?= $value['comment']?></textarea>
 
-			        </textarea><br>
 
 		   		<?php endforeach; ?>
 

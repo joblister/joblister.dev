@@ -76,8 +76,6 @@ $today = date("F j, Y, g:i a");
 			   	<?php foreach($posts as $row => $value): ?>
 			  
 		        <li><a href="oneSelectedPost.php?name=<?= $posts[$row]['post_id']?>"> <?= $posts[$row]['title'] ?></a></li><br>
-
-		   		
 		   		<?php endforeach; ?>
 		   		</ul>
 	   			
