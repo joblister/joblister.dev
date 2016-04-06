@@ -4,51 +4,45 @@ require_once '../Model.php';
 require_once '../User.php';
 require_once '../postsModel.php';
 require_once '../commentsModel.php';
-var_dump($_POST);
+// var_dump($_POST);
+$user = $_SESSION['logged_in_user'];
+var_dump($user);
 
 $id = Auth::user()->id;
 $allPostsbyUser = postsModel::allPostsbyUser($id);
+// var_dump($allPostsbyUser[0]['title']);
+// var_dump($allPostsbyUser);
+
+
 $allCommentsbyUser = commentsModel::allCommentsbyUser($id);
-var_dump($allPostsbyUser);
-var_dump($allCommentsbyUser);
-var_dump($allPostsbyUser[0]['title']);
+// var_dump($allCommentsbyUser);
 
-
-//catch posts for update below:
+/**  VALUE LIST  **/
 $post_title = Input::has('userPostsTitle')? Input::get('userPostsTitle'): 1;
-var_dump($post_title . ' =post_title');
-$post_content = Input::has('userPostsContent')? Input::get('userPostsContent'): 1;
-$post_id = $value['post_id'];
-
-var_dump($post_content . ' =post_content');  
+$post_content = Input::has('userPostsContent')? Input::get('userPostsContent'): 1; 
 $date_posted = strtotime('now');
 $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
-var_dump($_REQUEST);  
+$post_id = Input::get('updatePostId');
+$user_id = Auth::user()->id;
+var_dump($post_id . 'post id');
 
+ 
+/**  VALUE LIST END **/
 
-
-if(( $post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_update_btn')){
-
-	
-	$newPost = new postsModel();
-	$newPost->user_id = Auth::user()->id;
-	$newPost->content = $post_content;
-	$newPost->date = $date_posted;
-	$newPost->title = $post_title;
-	//$newPost->post_id = $value['post_id'];
-	
-	$newPost->save();
-
-
-	
-
+/**  UPDATE POST  **/
+if(($post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_update_btn')){
+	// $postArray = postsModel::postId($post_id);
+	// $postArray->user_id = $user_id;
+	// $postArray->post_id = $post_content;
+	// $postArray->date_posted = $date_posted;
+	// $postArray->title = $post_title;
+	// $postArray->save();
 	//header('Location: oneSelectedPost.php');
 }
-//end catch
 
-if(( $post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_delete_btn')){
+/**   DELETE POST  **/
 
-	
+if(($post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_delete_btn')){
 	$deletePost = new postsModel();
 	$deletePost->user_id = Auth::user()->id;
 	$deletePost->content = $post_content;
@@ -56,17 +50,11 @@ if(( $post_title != ''|| $post_title != null) && ($post_content != ''|| $post_co
 	$deletePost->title = $post_title;
 	$deletePost->post_id = $post_id;
 	$deletePost->deletePost($post_id);
-	
-
-
-	
 
 	//header('Location: oneSelectedPost.php');
 }
 
-
-
-
+/****************/
 
 if(!empty($_POST)){
 	extract(userInput($dbc));
@@ -101,9 +89,6 @@ function userInput($dbc) {
 	} catch (Exception $e) {
 		$errors['user_name'] = $e->getMessage();
 	}
-
-	
-
 	
 	var_dump($errors);
 	echo 'the top is errors';
@@ -114,12 +99,10 @@ function userInput($dbc) {
     	$last_name = Input::getString('last_name');
     	$user_name = Input::getString('user_name');
     	$email = Input::getString('email');
-    
     	
     	$user = User::find(Auth::user()->id);
 
-    	//overwriting user obj, see findbyUserName in User.php Model
-    	
+    	//overwriting $user obj, see findbyUserName in User.php Model
 
 		$user->first_name = $first_name;
 		
@@ -143,11 +126,6 @@ function userInput($dbc) {
 
 ?>
 
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,8 +136,12 @@ function userInput($dbc) {
   	 <link rel="stylesheet" type="text/css" href="/css/joblister.css">
   	 <style>
 
+  	 body{
+  	 	background-color: lightblue;
+  	 }
+
   	 .form3{
-  	 	width: 99%;
+  	 	width: 100%;
   	 	margin: 0 auto;
   	 }
 
@@ -232,15 +214,11 @@ function userInput($dbc) {
 		    <textarea type="text" class="form-control form1"  name="email" aria-describedby="basic-addon1"><?= $user->email ?></textarea>
 		
 		    <button  id="edit-btn" type="submit" class="btn btn-default">Submit</button>
+		    <br>
+		    <a href="changePassword.php?user=<?= $user->user_name ?>">Click on link to change password</a>
 		</form>
 
-			 
-
-
 		</div>  <!-- end col-md-8 -->
-	
-		
-
 
 	</div>  <!-- end container -->
 	<div class='commentsAndPost'>
@@ -249,36 +227,31 @@ function userInput($dbc) {
 			<?php if(!empty($allPostsbyUser)): ?>
 				<?php foreach ($allPostsbyUser as $key => $value): ?>
 				<form method ="POST">
-				 	<textarea maxlength="200" type="text" class="form-control form3" name="userPostsTitle" aria-describedby="basic-addon1"><?= $value['title'] ?>, posted on:  <?= $value['date'] ?></textarea>
-				 	<br>
+					<textarea  type="text"  name="updatePostId" cols="3" rows="1" value="<?= $value['post_id']?> "aria-describedby="basic-addon1" readonly><?= $value['post_id'] ?></textarea>
+				 	<textarea maxlength="200" type="text" class="form-control form3" name="userPostsTitle" aria-describedby="basic-addon1"><?= $value['title'] ?>, posted on:  <?= $value['date'] ?></textarea>			
 				 	<textarea  type="text" class="form-control form3" name="userPostsContent" aria-describedby="basic-addon1"><?= $value['content'] ?></textarea>
-				 	
 				 	<div class='postbtns'>
 				 		<button  id="post_delete_btn" name="post_delete_btn" type="submit" value="post_delete_btn" class="btn btn-default">delete</button>
 				 		<button  id="post_update_btn" name="post_update_btn" type="submit" value="post_update_btn"  class="btn btn-default">update</button>
 					</div>
-				 	<?php endforeach; ?>
 				</form>	
+				<?php endforeach; ?>
 			<?php endif; ?>
 
 			<h3 class="sign-placeholders3">All My Comments</h3>
 			<?php if(!empty($allCommentsbyUser)): ?>
 				<?php foreach ($allCommentsbyUser as $key => $value): ?>
-				 <form method ="POST">
-				  	<textarea  type="text" class="form-control form3" name="userComments" aria-describedby="basic-addon1"><?= $value['comment'] ?></textarea>
-				  	<div class='postbtns'>
-				 		<button  id="comment_delete_btn" name="comment_delete_btn" type="submit" value="comment_delete_btn" class="btn btn-default">delete</button>
-				 		<button  id="comment_update_btn" name="comment_update_btn" type="submit" value="comment_update_btn"  class="btn btn-default">update</button>
-					</div>
-
-				 	<?php endforeach; ?>
-				 </form>
-			<?php endif; ?>
+					 <form method ="POST">
+					  	<textarea  type="text" class="form-control form3" name="userComments" aria-describedby="basic-addon1"><?= $value['comment'] ?></textarea>
+					  	<div class='postbtns'>
+					 		<button  id="comment_delete_btn" name="comment_delete_btn" type="submit" value="comment_delete_btn" class="btn btn-default">delete</button>
+					 		<button  id="comment_update_btn" name="comment_update_btn" type="submit" value="comment_update_btn"  class="btn btn-default">update</button>
+						</div>
+					 </form>
+				 <?php endforeach; ?>
+			<?php endif;?>
 
 		</div>
-
-
-
 
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

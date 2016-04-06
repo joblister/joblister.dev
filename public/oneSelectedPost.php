@@ -78,11 +78,11 @@ $comments = commentsModel::getPostComments($post_id);
 			<hr>
 			
 			<h3 class="sign-placeholders">Title</h3>
-		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" readonly><?= $onePostArray['title']?></textarea>
+		    <textarea  class="form-control" id="inputlg" name="title" aria-describedby="basic-addon1" readonly><?= $onePostArray->title ?></textarea>
 		    <h3 class="sign-placeholders">Content</h3>
-		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray['content']?> </textarea>
+		    <textarea type="text" class="form-control"  id="inputlg-content" name="content"  aria-describedby="basic-addon1" readonly><?= $onePostArray->content ?> </textarea>
 		    <h3 class="sign-placeholders">Date</h3>
-		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray['date']?></textarea>
+		    <textarea type="text" class="form-control" id="inputlg" name="date" aria-describedby="basic-addon1" readonly><?= $onePostArray->date ?></textarea>
 		    <a id="select-post" type="submit" href="create_comment.php?name=<?= $onePostArray['post_id']?>" >Click here to Comment</a>
 
 		   	<?php if(!empty($comments)): ?>
