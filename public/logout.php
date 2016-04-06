@@ -108,7 +108,7 @@ Auth::logout();
 "use strict";
 
 	//var exitLogout =setInterval(function newDoc() {
-   //window.location.assign("index.php")
+  // window.location.assign("index.php")
 //}, 2000);
 
 

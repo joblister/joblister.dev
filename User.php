@@ -60,7 +60,17 @@ class User extends Model{
 
         // @TODO: You will need to iterate through all the attributes to build the prepared query
    
-
+    public function updatePassword($password)
+    {
+        self::dbConnect();
+       
+        $stmt = self::$dbc->prepare("UPDATE users SET password = :password WHERE id = :id");
+        
+        $stmt->bindValue(':password',password_hash($password, PASSWORD_DEFAULT), PDO::PARAM_STR);
+        $stmt->bindValue(":id", $this->id, PDO::PARAM_INT); 
+        $result = $stmt->execute();
+        
+    }
     /**
      * Find a single record in the DB based on its id
      *

@@ -3,6 +3,93 @@ require_once '../Auth.php';
 require_once '../Model.php';
 require_once '../User.php';
 
+$user = ($_SESSION['logged_in_user']);
+
+
+
+var_dump($user);
+
+
+  if(!empty($_POST)){
+  extract(userInput($dbc));
+  }
+
+  function userInput($dbc) {
+    $errors = [];
+    $success = [];
+
+    if (Input::get('password') == '') {
+      $errors['emptyPassword'] = 'Password can not be empty';
+    }else{
+      $password = Input::get('password');
+    }
+
+    if (Input::get('confirmPassword') == '') {
+      $errors['emptyPassword'] = 'Password can not be empty';
+    }else{
+      $password = Input::get('password');
+    }
+
+    if (Input::get('password') != Input::get('confirmPassword')) {
+      $errors['doNotMatch'] = 'Password does not match';
+   }else{
+      $password = Input::get('password');
+      
+  
+    }
+
+     if (Input::get('password') == Input::get('confirmPassword'))  {
+      $success['successful'] = 'Update Successful!';
+     }
+
+
+
+
+
+
+
+    try { 
+      $password = Input::getString('password');
+
+    } catch (Exception $e) {
+      $errors['password'] = $e->getMessage();
+    }
+
+    try { 
+      $confirmPassword = Input::getString('confirmPassword');
+
+    } catch (Exception $e) {
+      $errors['confirmPassword'] = $e->getMessage();
+    }
+    
+   
+   
+
+    if (empty($errors) && $password == $confirmPassword) {
+      $user = User::find(Auth::user()->id);
+    
+
+      
+      
+      
+      $user->updatePassword($password);
+      var_dump($user->password);
+         
+      
+      $_SESSION['logged_in_user'] = $user;
+     
+    
+     var_dump($user);
+
+      
+      return array('user'=>$user,'errors'=>$errors);
+    } else {
+      return array('errors'=>$errors,'user'=>new User);
+    }
+
+  
+  }
+
 
 
 
@@ -75,8 +162,35 @@ require_once '../User.php';
  		</div>
  	    <div class='line'>
         </div>	
-	
-			
+
+    <div class="col-md-8">
+     
+
+      <form method='POST'>
+        <h3 class="sign-placeholders">Password</h3>
+        <textarea type="password" class="form-control form1" value="<?= $user->password ?>" name="password" aria-describedby="basic-addon1"></textarea>
+        <h3 class="sign-placeholders">Confirm Password</h3>
+        <span> 
+          <?php if (isset($errors['emptyPassword'])): ?>
+            <?=  $errors['emptyPassword'] ?>
+          <?php endif ?>
+        </span>
+
+        <span> 
+          <?php if (isset($errors['doNotMatch'])): ?>
+            <?=  $errors['doNotMatch'] ?>
+          <?php endif ?>
+        </span>
+
+        <span> 
+          <?php if (isset($success['successful'])): ?>
+            <?=  $success['successful'] ?>
+          <?php endif ?>
+        </span>
+        <textarea type="password" class="form-control form1" value="<?= $user->password ?>" name="confirmPassword" aria-describedby="basic-addon1"></textarea>
+        <button  id="edit-btn" name="edit-btn" type="submit" class="btn btn-default">Submit</button>
+	     </form>
+		</div>	
 		
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
