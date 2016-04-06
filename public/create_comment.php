@@ -5,11 +5,12 @@ require_once '../postsModel.php';
 require_once '../Input.php';
 require_once '../commentsModel.php';
 session_start();
-$post_id = Input::has('name')? Input::get('name'): 1;
-var_dump($post_id . ' =post_id');
+$postIdFromLink = Input::has('name')? Input::get('name'): 1;
+var_dump($postIdFromLink . ' =post_id from Link on prev page');
 
 $commentText = Input::get('comment');
 var_dump($_REQUEST);
+
 
 $date_posted = strtotime('now');
 
@@ -18,9 +19,9 @@ $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
 if($commentText !='' || $commentText != null){
 	$comment = [];
 	$comment['user_id'] = Auth::user()->id;
-	$comment['post_id'] = $post_id;
 	$comment['comment'] = Input::get('comment');
 	$comment['date'] = $date_posted;
+	$comment['post_id'] = $postIdFromLink;
 
 	commentsModel::insertComment($comment);
 
@@ -98,7 +99,7 @@ if($commentText !='' || $commentText != null){
 			<form method="POST" action="create_comment.php" name="myform">
 		    <h3 class="sign-placeholders">Comment</h3>
 		    <textarea type="text" class="form-control"  cols="80" id="inputlg-content" name="comment"  aria-describedby="basic-addon1" placeholder="Enter Comment: "></textarea>
-		 
+		 	<textarea type="text" class="form-control"  cols="80" id="inputlg-content" name="post_id_button"  value="<?= $postIdFromLink ?>" aria-describedby="basic-addon1" style="display:none;"></textarea>
 		    <button  id="select-post"  type="submit" >SAVE</button>
 			</form>
 
