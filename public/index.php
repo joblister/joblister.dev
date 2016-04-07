@@ -22,14 +22,30 @@ if(isset($_SESSION['logged_in_user'])){
   <!---external personalized stylesheet-->
   <style type="text/css">
 
-
-   /*css here*/
+    * {
+        margin: 0;
+    }
+    html, body {
+        height: 100%;
+    }
+    .page-wrap {
+        min-height: 100%;
+      /* equal to footer height */
+        margin-bottom: -142px; 
+    }
+    .page-wrap:after {
+      content: "";
+      display: block;
+    }
+    .site-footer, .page-wrap:after {
+      height: 142px; 
+    }
 
    </style>  
 
 </head>
 <body>
-
+<div class="page-wrap">
   <?php include 'partials/navbar.php';?>
   
 <div class="jumbotron">
@@ -49,7 +65,7 @@ if(isset($_SESSION['logged_in_user'])){
 
 
 
-
+ <?php include 'partials/footer.php';?>
   <!--- js here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

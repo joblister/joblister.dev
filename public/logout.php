@@ -29,7 +29,7 @@ Auth::logout();
 			background-color: #199AEE;
 			height:20em;
 			left:10em;
-			z-index: 1;
+			z-index: 1000;
 			margin-right: 10px;
   	 	
   	 	}
@@ -44,11 +44,27 @@ Auth::logout();
 			margin-right: 10px;
 		}
 
+		#block3{
+			position:relative;
+			background-color: #199AEE;
+			height:20em;
+			left:10em;
+			z-index: 1;
+			margin-right: 10px;
+		}
+
+		#block4{
+			position:relative;
+			background-color: #199AEE;
+			height:20em;
+			left:10em;
+			z-index: 1;
+			margin-right: 10px;
+		}
+
 		.hal {
-			position: center;
-		    left: 0px;
-		    top: 0px;
-		    z-index: -1;
+		    z-index: 0;
+
 		}
     		  
 
@@ -72,26 +88,30 @@ Auth::logout();
 </head>
 <body>
 	
-	 
+		<!---
 		<div class="top hatch">
 			<div id="block1" class="col-sm-2 blue-block"></div>
 			<div id="block1" class="col-sm-2 blue-block"></div>
 			<div id="block1" class="col-sm-2 blue-block"></div>
 			<div id="block1" class="col-sm-2 blue-block"></div>
 		</div>	
-		
-	
-		<img class="col-md-2 hal" src="/img/hal.gif" alt="HAL 9000">
-	
-      	
-		<h1 id="bye" class='logout-txt'>Farewell..</h1>
-		<div class="bottom hatch">
+		-->
+		<div class="row">
+			<div id="block1" class="col-sm-2 blue-block"></div>
+			<div id="block2" class="col-sm-2 blue-block"></div>
+			<div id="block3" class="col-sm-2 blue-block"></div>
+			<div id="block4" class="col-sm-2 blue-block"></div>
+		</div>
+		<div class="row">
+			<img class="col-md-2 hal" src="/img/hal.gif" alt="HAL 9000">
+		</div>
+
+		<div class="row">
 			<div id="block2" class="col-sm-2 blue-block"></div>
 			<div id="block2" class="col-sm-2 blue-block"></div>
 			<div id="block2" class="col-sm-2 blue-block"></div>
 			<div id="block2" class="col-sm-2 blue-block"></div>
 		</div>
-
 	
 
 
@@ -122,6 +142,21 @@ $( document ).ready(function() {
 	    top:  "+=50px"
 	}, 500);
 	console.log('this worked');
+
+	$("#block2").animate({
+	    
+	    top:  "+=50px"
+	}, 500);
+
+	$("#block3").animate({
+	    
+	    top:  "+=50px"
+	}, 500);
+
+	$("#block4").animate({
+	    
+	    top:  "+=50px"
+	}, 500);
 
 });	
 	   
