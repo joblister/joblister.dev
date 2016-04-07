@@ -24,6 +24,21 @@ class commentsModel extends Model{
     }
 
 
+       public static function deletebyCommentId($comment_id){
+
+
+       self::dbConnect();
+
+        $stmt = self::$dbc->prepare("DELETE FROM comments WHERE comment_id = :comment_id");
+
+        $stmt->bindValue(':comment_id', $comment_id , PDO::PARAM_INT);
+
+        //execute gets its own line, t or false
+        $stmt->execute();
+
+    }
+
+
     public static function commentId($comment_id){
 
         self::dbConnect();
@@ -58,7 +73,6 @@ class commentsModel extends Model{
         $stmt->bindValue(':user_id',$arrayOfComments['user_id'], PDO::PARAM_INT );
         $stmt->bindValue(':date_posted',$arrayOfComments['date'], PDO::PARAM_STR);
         $stmt->execute();
-
 
     }
 

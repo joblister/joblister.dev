@@ -25,7 +25,7 @@ if($commentText !='' || $commentText != null){
 
 	commentsModel::insertComment($comment);
 
-	header('Location: oneSelectedPost.php');
+	header('Location: posts.php');
 }
 
 ?>
@@ -99,7 +99,7 @@ if($commentText !='' || $commentText != null){
 			<form method="POST" action="create_comment.php" name="myform">
 		    <h3 class="sign-placeholders">Comment</h3>
 		    <textarea type="text" class="form-control"  cols="80" id="inputlg-content" name="comment"  aria-describedby="basic-addon1" placeholder="Enter Comment: "></textarea>
-		 	<textarea type="text" class="form-control"  cols="80" id="inputlg-content" name="post_id_button"  value="<?= $postIdFromLink ?>" aria-describedby="basic-addon1" style="display:none;"></textarea>
+		 	<input type="hidden" class="form-control"  cols="80" id="inputlg-content" name="name"  value="<?= $postIdFromLink ?>" aria-describedby="basic-addon1" style="display:none;">
 		    <button  id="select-post"  type="submit" >SAVE</button>
 			</form>
 

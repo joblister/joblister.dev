@@ -3,12 +3,11 @@
 require_once '../Auth.php';
 require_once '../postsModel.php';
 require_once '../commentsModel.php';
-require_once 'account.php';
+
 
 extract(postsModel::paginate());
 
-$post_id = Input::has('name')? Input::get('name'): 1;
-
+$post_id = Input::has('name')? Input::get('name'):1;
 var_dump($post_id . ' = post id');
 
 $onePostArray = postsModel::postId($post_id);

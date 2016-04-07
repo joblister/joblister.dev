@@ -27,7 +27,6 @@ if(( $title != ''|| $title != null) && ($content != ''|| $content != null)){
 
 }
 
-
 ?>
 
 <!DOCTYPE html>
