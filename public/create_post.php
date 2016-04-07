@@ -1,8 +1,8 @@
 <?php
 
-require_once '../Auth.php';
-require_once '../postsModel.php';
-require_once '../Input.php';
+require_once '../utils/Auth.php';
+require_once '../models/postsModel.php';
+require_once '../utils/Input.php';
 var_dump($_REQUEST);
 $title = Input::has('title')? Input::get('title'): '';
 $content = Input::has('content')? Input::get('content'): '';
@@ -15,7 +15,6 @@ var_dump($date_posted);
 var_dump($title);
 var_dump($content);
 
-
 if(( $title != ''|| $title != null) && ($content != ''|| $content != null)){
 
 	$newPost = new postsModel();
@@ -24,6 +23,7 @@ if(( $title != ''|| $title != null) && ($content != ''|| $content != null)){
 	$newPost->date = $date_posted;
 	$newPost->user_id = $user_id;
 	$newPost->save();
+	header('Location: posts.php');
 
 }
 
@@ -105,7 +105,7 @@ if(( $title != ''|| $title != null) && ($content != ''|| $content != null)){
 			</form>
 					 
 		</div>
-
+	<?php include 'partials/footer.php';?>
 	<script src="/js/practice.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

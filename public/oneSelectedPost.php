@@ -1,8 +1,8 @@
 <?php
 
-require_once '../Auth.php';
-require_once '../postsModel.php';
-require_once '../commentsModel.php';
+require_once '../utils/Auth.php';
+require_once '../models/postsModel.php';
+require_once '../models/commentsModel.php';
 
 
 extract(postsModel::paginate());

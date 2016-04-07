@@ -2,10 +2,10 @@
 
 // __DIR__ is a *magic constant* with the directory path containing this file.
 // This allows us to correctly require_once Model.php, no matter where this file is being required from.
-require_once 'database/joblister_db_connect.php';
-require_once __DIR__ . '/Model.php';
+require_once '../database/joblister_db_connect.php';
+require_once 'Model.php';
 
-require_once 'Input.php';
+require_once '../utils/Input.php';
 
 $attributes = array();
 

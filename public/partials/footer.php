@@ -20,6 +20,12 @@
   		* {
   			margin: 0;
 		}
+		#richards-row, #dons-row{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
 		html, body {
   			height: 100%;
 		}
@@ -280,6 +286,11 @@
    
 		}
 
+		#footer-icons1,#footer-icons2{
+			margin: 0 auto;
+			
+		}
+
    </style>  
 
 
@@ -306,9 +317,7 @@
 		</div>
   		</div>
   	</div>
-
-    
-  </div>
+  </div> <!-- end container -->
 </nav>
 </div class="page-wrap">
 

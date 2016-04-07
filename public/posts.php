@@ -1,22 +1,13 @@
 <?php
 
-require_once '../Auth.php';
-require_once '../postsModel.php';
-
-
+require_once '../utils/Auth.php';
+require_once '../models/postsModel.php';
 
 extract(postsModel::paginate());
-
-// postsModel::all();
-// var_dump($page);
-
-// var_dump($posts[0]['title']);
-
 
 $today = date("F j, Y, g:i a"); 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +69,6 @@ $today = date("F j, Y, g:i a");
 		        <li><a href="oneSelectedPost.php?name=<?= $posts[$row]['post_id']?>"> <?= $posts[$row]['title'] ?></a></li><br>
 		   		<?php endforeach; ?>
 		   		</ul>
-	   			
 		
 		</div>
 
@@ -93,6 +83,8 @@ $today = date("F j, Y, g:i a");
 
 		</div>
 
+	 <?php include 'partials/footer.php';?>
+
 	<script src="/js/practice.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
@@ -100,6 +92,5 @@ $today = date("F j, Y, g:i a");
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>	
-
 </body>
 </html>

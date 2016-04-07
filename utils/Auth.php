@@ -1,10 +1,8 @@
 <?php
+require_once 'Input.php';
+require_once '../models/User.php';
 
-
-require_once '../Input.php';
-require_once '../User.php';
-
-if(session_status() !=PHP_SESSION_ACTIVE){
+if(session_status() != PHP_SESSION_ACTIVE){
 
 	session_start();
 }
@@ -12,8 +10,6 @@ if(session_status() !=PHP_SESSION_ACTIVE){
 class Auth{
 
 	//correct login
-	
-
 	public static function attempt($attemptedUsername, $attemptedPassword) {
 		
 		$user = User::findByUserName($attemptedUsername);
@@ -21,7 +17,7 @@ class Auth{
 			return false;
 		}
 		
-		$validPassword = password_verify($attemptedPassword,$user->password);
+		$validPassword = password_verify($attemptedPassword, $user->password);
 		if ($validPassword) {
 			//object living in the session
 			$_SESSION['logged_in_user'] = $user;
@@ -55,11 +51,7 @@ class Auth{
 	}
 
 
-
 }
-
-
-
 
 
 ?>

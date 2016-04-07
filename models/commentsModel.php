@@ -1,6 +1,6 @@
 
 <?php
-require_once 'Auth.php';
+require_once '../utils/Auth.php';
 require_once 'Model.php';
 require_once 'User.php';
 
