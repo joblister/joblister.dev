@@ -38,13 +38,30 @@ if(($post_title != ''|| $post_title != null) && ($post_content != ''|| $post_con
 	$postArrayUpdate->post_id = $post_id;
 	$postArrayUpdate->save();
 	header('Location: posts.php');
+	die();
+
 }
 
 if(($post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_delete_btn')){
 
 	postsModel::deletePost($post_id);
-
 	header('Location: posts.php');
+	die();
+
+}
+
+
+$comment_id = Input::has('updateCommentId')? Input::get('updateCommentId'): 1;
+$commentsByUser = Input::has('userComments')? Input::get('userComments'): 1;
+var_dump($comment_id . ' = comment_id');
+var_dump($commentsByUser . ' commentsbyUser');
+
+if($commentsByUser != ''|| $commentsByUser != null && Input::has("comment_delete_btn")){
+	
+	commentsModel::deletebyCommentId($comment_id);
+	header('Location: posts.php');
+	die();
+
 }
 
 
@@ -75,7 +92,6 @@ function userInput($dbc) {
 		$errors['email'] = $e->getMessage();
 	}
 
-	
 
 	try {
 		$user_name = Input::getString('user_name');
@@ -188,13 +204,12 @@ function userInput($dbc) {
 		<div class="col-md-8">
 			<?php if(!empty($errors) && (Input::get('post_update_btn') == null) && (Input::get('post_delete_btn') == null) && (Input::get('comment_update_btn') == null) && (Input::get('comment_delete_btn') == null)): ?>
 		 		<?php foreach ($errors as $error): ?>
-
 			 		<h3><?= $error['first_name']?></h3>
 			 		<h3><?= $error['last_name']?></h3>
 			 		<h3><?= $error['user_name']?></h3>
 			 		<h3><?= $error['email']?></h3>
 		 		<?php endforeach; ?>
-
+s
 		 	<?php endif; ?>
 		<form method="POST">
 		 		 
