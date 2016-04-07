@@ -1,17 +1,15 @@
 <?php
 
-require_once '../Auth.php';
-require_once '../postsModel.php';
-require_once '../Input.php';
-require_once '../commentsModel.php';
+require_once '../utils/Auth.php';
+require_once '../models/postsModel.php';
+require_once '../models/Input.php';
+require_once '../models/commentsModel.php';
 session_start();
 $postIdFromLink = Input::has('name')? Input::get('name'): 1;
 var_dump($postIdFromLink . ' =post_id from Link on prev page');
 
 $commentText = Input::get('comment');
 var_dump($_REQUEST);
-
-
 $date_posted = strtotime('now');
 
 $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
@@ -102,7 +100,6 @@ if($commentText !='' || $commentText != null){
 		 	<input type="hidden" class="form-control"  cols="80" id="inputlg-content" name="name"  value="<?= $postIdFromLink ?>" aria-describedby="basic-addon1" style="display:none;">
 		    <button  id="select-post"  type="submit" >SAVE</button>
 			</form>
-
 
 		</div>
 

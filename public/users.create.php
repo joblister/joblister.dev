@@ -1,8 +1,7 @@
 <?php
-require_once '../Auth.php';
-require_once '../User.php';
+require_once '../utils/Auth.php';
+require_once '../models/User.php';
 $errors = [];
-//from PREV and NEXT current page
 
 if(!empty($_POST)){
 
@@ -14,15 +13,12 @@ function descAdd($dbc){
 
      $errors = [];
 
-	
-
-
     try {
           $first_name = Input::getString('first_name');
 
     } catch (Exception $e){
 
-        //get Exceptiion msg and push to array
+        
         $errors[] = $e->getMessage();
 
     }
@@ -37,13 +33,14 @@ function descAdd($dbc){
     }
 
     try {
-          $user_name = Input::getString('user_name');
 
-          $user = User::findByUserName($user_name);
+        $user_name = Input::getString('user_name');
 
-          if($user != null){
+        $user = User::findByUserName($user_name);
 
-          	$errors[] = "Username already exists!";
+        if($user != null){
+
+        	$errors[] = "Username already exists!";
 
           }
 
@@ -63,7 +60,8 @@ function descAdd($dbc){
     }
 
     try {
-          $password = Input::getString('password');
+
+        $password = Input::getString('password');
 
     } catch (Exception $e){
 
@@ -74,49 +72,32 @@ function descAdd($dbc){
    
 
     if ($_POST["password"] == $_POST["confirmPassword"]) {
-   		// do nothing
+   		
 	} else {
    
       	$errors[] = "Passwords do not match.";
-    
    
 	}
 
     if(empty($errors)){
 
-        $first_name = Input::getString('first_name');
-        $last_name = Input::getString('last_name');
-        $user_name = Input::getString('user_name');
-        $email = Input::getString('email');
-        $password = password_hash(Input::getString('password'), PASSWORD_DEFAULT);
-        // Input::getString('password');
-        
- 
+        $user = new User();
+        $user->first_name = Input::getString('first_name');
+        $user->last_name = Input::getString('last_name');
+        $user->user_name = Input::getString('user_name');
+        $user->email = Input::getString('email');
+        $password = Input::getString('password');
+        $user->password = $password;
+        $user->save();
 
-
-     //UNIQUE is caught here
-
-
-     $stmt = $dbc->prepare("INSERT INTO users (first_name,last_name,user_name,email,password) VALUES (:first_name,:last_name,:user_name,:email,:password)"); 
-        $stmt->bindValue(':first_name', $first_name, PDO::PARAM_STR);
-        $stmt->bindValue(':last_name', $last_name, PDO::PARAM_STR);
-        $stmt->bindValue(':user_name', $user_name, PDO::PARAM_STR);
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $password, PDO::PARAM_STR);
-        $stmt->execute();
-
-
-
-        Auth::attempt($user_name,$password);
-
-        header("Location: posts.php");
+        if (Auth::attempt($user->user_name, $password)) {
+            header("Location: posts.php");
+        }
 
     }
 
-
-
    var_dump($errors);     
- return $errors;
+    return $errors;
 
 
 }//end descAdd
@@ -170,9 +151,8 @@ function descAdd($dbc){
 	<?php foreach($errors as $error): ?>
         <p><?= $error ?></p><br>
     <?php endforeach; ?>
-     
    
-
+  <?php include 'partials/footer.php';?>
 		<script src="/js/practice.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>

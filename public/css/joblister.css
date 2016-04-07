@@ -1,36 +1,36 @@
 .sign-placeholders {
+
     color:black;
 }
 
 
-
-
 .btn-primary {
-        position:relative;
-        right:60px;
-        margin-left: 30px;
-        top: 30px;
-        background-color: #96B7A3;
-        border-color:#96B7A3;
 
-        }
+    position:relative;
+    right:60px;
+    margin-left: 30px;
+    top: 30px;
+    background-color: #96B7A3;
+    border-color:#96B7A3;
+
+}
 
 
 
  .navbar-default {
-       background-color: #96B7A3;
-       border-color: #96B7A3;
-       padding: 10px;
+
+   background-color: #96B7A3;
+   border-color: #96B7A3;
+   padding: 10px;
 
  }
 
- .btn-primary:hover {
-          color: #fff;
+.btn-primary:hover {
 
-           background-color: #96B7A3;
-   
-           border-color: #849189;
-           border-width:1px;
+    color: #fff;
+    background-color: #96B7A3;
+    border-color: #849189;
+    border-width:1px;
  }   
 
  .modal-content {
@@ -39,150 +39,158 @@
     background-color: #96B7A3;
  }
 
- .sign-in {
-        position:relative;
-         top: 50px;
-        left: 25%;
+.sign-in {
 
- }
+    position:relative;
+    top: 50px;
+    left: 25%;
 
- .sign-txt {
-        color:white;
-        text-shadow :1.5px 1.5px 2px grey;
-        margin-left: 20px;
-        margin-bottom: 20px;
+}
 
-  }
+.sign-txt {
 
+    color:white;
+    text-shadow :1.5px 1.5px 2px grey;
+    margin-left: 20px;
+    margin-bottom: 20px;
 
-  .sign-up-link {
-         position: relative;        
-         left: 270px;
-         bottom: 20px;
-   }
-
-  #sign-in-btn {
-          margin:10px;
-  }
-
-  #no-member {
-        position: relative;
-        top: 10px;
-        left: 160px;
-        margin: 10px;
-   }
-
- 
-
- 
+}
 
 
+.sign-up-link {
 
-   #profile-create:hover {
+    position: relative;        
+    left: 270px;
+    bottom: 20px;
+}
+
+#sign-in-btn {
+      margin:10px;
+}
+
+#no-member {
+    position: relative;
+    top: 10px;
+    left: 160px;
+    margin: 10px;
+}
+
+#profile-create:hover {
+
     color:white;
     background-color: #849189;
 
-  }
+}
 
-  .btn-default {
+.btn-default {
+
     box-shadow: 1.5px 1.5px 2px #888888;
 
 }
 
- #sign-in-btn:hover {
+#sign-in-btn:hover {
+
     color:white;
     background-color: #849189;
 
-  }
+}
 
- body {
-    font-family: 'Open Sans', sans-serif;
- }
+body {
+font-family: 'Open Sans', sans-serif;
+}
 
 
 .sign-up-txt {
+
     background-color: #849189;
-    
-   
+
+
 }
 
 #sign-up-direction {
+
     color:white;
-   
-    
 
 }
-    
+
 .jumbotron {
-  
-   background-image:url("/img/the office.jpg");
+
+    background-image:url("/img/the office.jpg");
     background-position:no-repeat;
     background-position: center;
     color:white;
     text-align: center;
     padding: 70px;
-    
+
 }
 
 
 
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
-   
+
     border: solid 1px #abd3ba;
 
 }
 
 .navbar-nav>li>a {
+
     border: solid 1px transparent;
 
 }
 
 .nav-text {
-        color: #ededed!important;
+
+    color: #ededed!important;
 }
 
 .form1 {
-        border: solid 2px;
-        border-color: #849189;
+
+    border: solid 2px;
+    border-color: #849189;
 }
 
 .thumbnail {
-  position:relative;
-  width: 100px;
+
+    position:relative;
+    width: 100px;
 }
 
 .hal {
+
     position: relative;
     left: 40%;
     top: 50px;
+
 }
 
 .logout-txt {
-  text-align: center;
+
+    text-align: center;
 
 }
 
 #bye {
-  position:relative;
-  top:30px;
+
+    position:relative;
+    top:30px;
+
 }
 
 #edit-btn:hover {
+
     color:white;
     background-color: #849189;
 
-  }
+}
+.account-txt {
 
- 
-
- .account-txt {
     background-color: #849189;
     color:white;
     position:relative;
     height:50em;
-    text-align: center
- }
+    text-align: center;
+}
 
 
 
@@ -196,10 +204,11 @@
 }
 
 .account-info {
-  color:#DCDCDC;
+    color:#DCDCDC;
 }
 
 .welcome-user {
+
       color: #ededed;
       margin-top: 16px;
       left: 15px;
@@ -207,33 +216,36 @@
 
 }
 @media (max-width: 400px) {
-    
-    .jumbotron {
-  
-   background-image:url("/img/the office.jpg");
+
+.jumbotron {
+
+    background-image:url("/img/the office.jpg");
     background-position:no-repeat;
     background-position: center;
     color:white;
     text-align: center;
     padding: 20px;
-    
-    }
 
-    #bye {
-      position:relative;
-      top:30px;
-    } 
+}
 
-    .hal {
-      position: relative;
-      left: 40%;
-      top: 50px;
-    }
+#bye {
 
-    .logout-txt {
-      text-align: center;
+    position:relative;
+    top:30px;
+} 
 
-    }
+.hal {
+
+    position: relative;
+    left: 40%;
+    top: 50px;
+}
+
+.logout-txt {
+
+  text-align: center;
+
+}
 
 
 

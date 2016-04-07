@@ -1,98 +1,78 @@
 <?php
-require_once '../Auth.php';
-require_once '../Model.php';
-require_once '../User.php';
+require_once '../utils/Auth.php';
+require_once '../models/Model.php';
+require_once '../models/User.php';
+require_once '../utils/Input.php';
 
 $user = ($_SESSION['logged_in_user']);
-
-
 
 var_dump($user);
 
 
-  if(!empty($_POST)){
-  extract(userInput($dbc));
-  }
+if(!empty($_POST)){
+    extract(userInput($dbc));
+}
 
-  function userInput($dbc) {
-    $errors = [];
-    $success = [];
+function userInput($dbc) {
+$errors = [];
+$success = [];
 
-    if (Input::get('password') == '') {
-      $errors['emptyPassword'] = 'Password can not be empty';
-    }else{
-      $password = Input::get('password');
-    }
+if (Input::get('password') == '') {
+    $errors['emptyPassword'] = 'Password can not be empty';
+}else{
+    $password = Input::get('password');
+}
 
-    if (Input::get('confirmPassword') == '') {
-      $errors['emptyPassword'] = 'Password can not be empty';
-    }else{
-      $password = Input::get('password');
-    }
+if (Input::get('confirmPassword') == '') {
+    $errors['emptyPassword'] = 'Password can not be empty';
+}else{
+    $password = Input::get('password');
+}
 
-    if (Input::get('password') != Input::get('confirmPassword')) {
-      $errors['doNotMatch'] = 'Password does not match';
-   }else{
-      $password = Input::get('password');
-      
+if (Input::get('password') != Input::get('confirmPassword')) {
+    $errors['doNotMatch'] = 'Password does not match';
+}else{
+    $password = Input::get('password');
+
+}
+
+ if (Input::get('password') == Input::get('confirmPassword'))  {
+    $success['successful'] = 'Update Successful!';
+ }
+
+try { 
+    $password = Input::getString('password');
+
+} catch (Exception $e) {
+    $errors['password'] = $e->getMessage();
+}
+
+try { 
+    $confirmPassword = Input::getString('confirmPassword');
+
+} catch (Exception $e) {
+    $errors['confirmPassword'] = $e->getMessage();
+}
+
+if (empty($errors) && $password == $confirmPassword) {
+
+    $user = User::find(Auth::user()->id);
+    
+    $user->updatePassword($password);
+
+    var_dump($user->password);
+
+    $_SESSION['logged_in_user'] = $user;
+
+    var_dump($user);
   
-    }
-
-     if (Input::get('password') == Input::get('confirmPassword'))  {
-      $success['successful'] = 'Update Successful!';
-     }
-
+    return array('user'=>$user,'errors'=>$errors);
+} else {
+    return array('errors'=>$errors,'user'=>new User);
+}
 
 
-
-
-
-
-    try { 
-      $password = Input::getString('password');
-
-    } catch (Exception $e) {
-      $errors['password'] = $e->getMessage();
-    }
-
-    try { 
-      $confirmPassword = Input::getString('confirmPassword');
-
-    } catch (Exception $e) {
-      $errors['confirmPassword'] = $e->getMessage();
-    }
-    
-   
-   
-
-    if (empty($errors) && $password == $confirmPassword) {
-      $user = User::find(Auth::user()->id);
-    
-
-      
-      
-      
-      $user->updatePassword($password);
-      var_dump($user->password);
-         
-      
-      $_SESSION['logged_in_user'] = $user;
-     
-    
-     var_dump($user);
-
-      
-      return array('user'=>$user,'errors'=>$errors);
-    } else {
-      return array('errors'=>$errors,'user'=>new User);
-    }
-
-  
-  }
-
-
-
-
+}
 
 ?>
 
@@ -143,28 +123,27 @@ var_dump($user);
 
 	<div class="account-form container">	
 		<div class="col-md-4 account-txt">
-		<h1 id="account-direction">Account</h1>
-		
-		<h4 class="account-info">Made a mistake putting in your information?<br>
-			No Worries! We got you covered</h4>
-	    <div class='line'>
-      	</div>
-      	<h4 class="account-info"> Step 1. On your right you will see the original information you put in. To 
- 			make a change, just type in the fields you wish to correct. Yup it's easy as that!
- 		</h4>
- 	    <div class='line'>
-        </div>	
- 		<h4 class="account-info"> Step 2. Review Your changes. Are they correct?</h4>
-		<div class='line'>
-        </div>
- 		<h4 class="account-info"> Step 3. If so, Congrats! Just click on the submit button, You have
- 			now officially edited your information. Your wish is our command.</h4>
+    		<h1 id="account-direction">Account</h1>
+    		
+    		<h4 class="account-info">Made a mistake entering your information?<br>
+    			No Worries! Follow the instructions below:</h4>
+    	    <div class='line'>
+          	</div>
+          	<h4 class="account-info"> Step 1. On your right, you will see your current information. To 
+     			make a change, just type in the fields you wish to correct. Yes, it's as easy as that!
+     		</h4>
+     	    <div class='line'>
+            </div>	
+     		<h4 class="account-info"> Step 2. Review Your changes. Are they correct?</h4>
+    		<div class='line'>
+            </div>
+     		<h4 class="account-info"> Step 3. If so, Congrats! Just click on the submit button, You have
+     			now officially edited your information.</h4>
  		</div>
- 	    <div class='line'>
-        </div>	
+
+ 	    <div class='line'></div>	
 
     <div class="col-md-8">
-     
 
       <form method='POST'>
         <h3 class="sign-placeholders">Password</h3>

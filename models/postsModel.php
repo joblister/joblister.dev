@@ -1,6 +1,6 @@
-t
+
 <?php
-require_once 'Auth.php';
+require_once '../utils/Auth.php';
 require_once 'Model.php';
 require_once 'User.php';
 require_once 'commentsModel.php';
@@ -58,6 +58,7 @@ class postsModel extends Model{
 
              $instance = new static($onePostArray);
          }
+         var_dump('x', $post_id, $instance);
          return $instance;
 
     }

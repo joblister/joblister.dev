@@ -1,5 +1,6 @@
 <?php
 if(isset($_SESSION['logged_in_user'])){
+
   var_dump($_SESSION['logged_in_user']);
 }
 
@@ -46,26 +47,18 @@ if(isset($_SESSION['logged_in_user'])){
 </head>
 <body>
 <div class="page-wrap">
-  <?php include 'partials/navbar.php';?>
+    <?php include 'partials/navbar.php';?>
   
-<div class="jumbotron">
-
-    
-      
+    <div class="jumbotron">
       <h1>Job Lister has the job that you're looking for!</h1>
       <p>This region's number one site for employers looking for qualified professionals.
          Also, the region's number one site for job seekers from all fields.
       </p> 
     </div>
-  </div>
 
+</div>
 
-
-
-
-
-
- <?php include 'partials/footer.php';?>
+    <?php include 'partials/footer.php';?>
   <!--- js here -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

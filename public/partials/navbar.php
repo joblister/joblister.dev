@@ -1,32 +1,17 @@
 <?php
 
+require_once '../utils/Auth.php';
+require_once '../models/User.php';
 
-
-require_once '../Auth.php';
-require_once '../User.php';
-
-
-
-
-if(isset($_SESSION['logged_in_user'])){
+if(Auth::check()){
  
-  $user = $_SESSION['logged_in_user'];
+	$user = Auth::user();
 
-
-
-
- //if(!isset($_SESSION['logged_in_user'])){
-	//echo 'You are not logged in, please sign in or sign up';
-	//header('Location:/index.php');
 } else {
+
 	$user = new User();
 } 
 
-if(Auth::check()) {
-	echo 'checking if user is already logged on' .PHP_EOL;
-	//header('Location:/posts.php');
-	//die();
-}
 
 if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['log-in'])) {
 
@@ -38,69 +23,33 @@ if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['lo
 	if (Auth::attempt($attemptedUsername, $attemptedPassword)){
 		header('Location:/posts.php');
 		die();
-	}	
-
-	if(Auth::check()) {
-		echo 'log in 1';
-		header('Location:/posts.php');
-		die();
-
-		
-	} elseif(isset($_SESSION['logged_in_user']) && $_SESSION['logged_in_user'] != ""){
-		echo 'log in 2' . PHP_EOL;
-		
-		 header('Location:/posts.php');
-		 die(); 
-
-
-	}elseif(User::findByUserName($attemptedUsername) == $attemptedUsername && User::findByPassword($attemptedPassword) == $attemptedPassword) {
-		echo 'log in 3' . PHP_EOL;
-			$_SESSION['logged_in_user'] = $attemptedUsername;
-			header('Location:/posts.php');
-			die();
-
-			
-
 	} elseif($attemptedUsername != '' || $attemptedPassword != '') {
-	echo "unsuccessful login attempt" .PHP_EOL;
-
+		echo "unsuccessful login attempt" .PHP_EOL;
 	}
-
-	
-
 
 }
 
-
-
-
-
-
 ?>
 
-
-
-
-
-<?php if(isset($_SESSION['logged_in_user'])){ ?><div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-    	  <form method="POST">
-    	  <div class="sign-in">
-    	  	<h2 class="sign-txt">Log In</h2>
-	        <label for "username"></label>
-	        <input  id="username" type="text" placeholder="Enter your username" name="user_name"><br>
-	        <label for "password"></label>
-	        <input id="password" type="password" placeholder="Enter your password" name="password"><br>
-	        <button  id="sign-in-btn" type="submit" name='log-in' value='true' class="btn btn-default">Log In</button>
-	      </div>
-	      <p id='no-member'>Not a member?</p>
-	      <p class='sign-up-link'><a href="users.create.php">Sign Up!</a></p>
-
-	    </form>
-    </div>
-  </div>
-</div>
+<?php if(Auth::check()){ ?>
+	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	    	<form method="POST">
+				<div class="sign-in">
+					<h2 class="sign-txt">Log In</h2>
+					<label for "username"></label>
+					<input  id="username" type="text" placeholder="Enter your username" name="user_name"><br>
+					<label for "password"></label>
+					<input id="password" type="password" placeholder="Enter your password" name="password"><br>
+					<button  id="sign-in-btn" type="submit" name='log-in' value='true' class="btn btn-default">Log In</button>
+				</div>
+				<p id='no-member'>Not a member?</p>
+				<p class='sign-up-link'><a href="users.create.php">Sign Up!</a></p>
+		    </form>
+	    </div>
+	  </div>
+	</div>
 
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
@@ -122,7 +71,6 @@ if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['lo
 			<li><a class="nav-text" href="account.php"  id='account' >Account</a></li>
 			<li><a class="nav-text" href="create_post.php"  id='' >Create</a></li>
 			<li><a class="nav-text" href="logout.php"  id='log-out' >Logout</a></li>
-			<li><a class="nav-text" href="" data-toggle="modal" data-target=".bs-example-modal-sm">Log In/Sign Up</a></li>
 			<li class="welcome-user">Welcome! <?= $user->user_name ?></li>
 		  </ul>	     
 	    </div><!-- /.navbar-collapse -->
@@ -130,9 +78,8 @@ if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['lo
 
 
 </nav>
-<?php } ?>
-
-<?php if(!isset($_SESSION['logged_in_user'])){ ?><div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+<?php } else { ?>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
     	  <form method="POST">
@@ -172,13 +119,8 @@ if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['lo
 			<li><a class="nav-text" href="" data-toggle="modal" data-target=".bs-example-modal-sm">Log In/Sign Up</a></li>
 		  </ul>	     
 	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
+	</div><!-- /.container-fluid -->
 
 
 </nav>
 <?php } ?>
-
-
-
-
-

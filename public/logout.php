@@ -1,18 +1,12 @@
 <?php
 session_start();
-require_once '../Log.php';
-require_once '../Auth.php';
-require_once '../User.php';
-
+require_once '../utils/Log.php';
+require_once '../utils/Auth.php';
+require_once '../models/User.php';
 
 Auth::logout();
 
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +19,7 @@ Auth::logout();
 	<style>
 
 		#block1{
+
 			position:relative;
 			background-color: #199AEE;
 			height:20em;
@@ -36,6 +31,7 @@ Auth::logout();
 		
 
 		#block2{
+
 			position:relative;
 			background-color: #199AEE;
 			height:20em;
@@ -45,6 +41,7 @@ Auth::logout();
 		}
 
 		#block3{
+
 			position:relative;
 			background-color: #199AEE;
 			height:20em;
@@ -54,6 +51,8 @@ Auth::logout();
 		}
 
 		#block4{
+
+
 			position:relative;
 			background-color: #199AEE;
 			height:20em;
@@ -63,65 +62,31 @@ Auth::logout();
 		}
 
 		.hal {
+
 		    z-index: 0;
 
 		}
-    		  
-
-    	}
-
-    	#bye {
-	    position: relative;
-	    top:10px;
-	    z-index:0;
-	    }
-
-		@media (max-width: 400px) {
-			
-
-		}
-		
-		
-
 
 	</style>
 </head>
 <body>
-	
-		<!---
-		<div class="top hatch">
-			<div id="block1" class="col-sm-2 blue-block"></div>
-			<div id="block1" class="col-sm-2 blue-block"></div>
-			<div id="block1" class="col-sm-2 blue-block"></div>
-			<div id="block1" class="col-sm-2 blue-block"></div>
-		</div>	
-		-->
-		<div class="row">
-			<div id="block1" class="col-sm-2 blue-block"></div>
-			<div id="block2" class="col-sm-2 blue-block"></div>
-			<div id="block3" class="col-sm-2 blue-block"></div>
-			<div id="block4" class="col-sm-2 blue-block"></div>
-		</div>
-		<div class="row">
-			<img class="col-md-2 hal" src="/img/hal.gif" alt="HAL 9000">
-		</div>
 
-		<div class="row">
-			<div id="block2" class="col-sm-2 blue-block"></div>
-			<div id="block2" class="col-sm-2 blue-block"></div>
-			<div id="block2" class="col-sm-2 blue-block"></div>
-			<div id="block2" class="col-sm-2 blue-block"></div>
-		</div>
-	
+	<div class="row">
+		<div id="block1" class="col-sm-2 blue-block"></div>
+		<div id="block2" class="col-sm-2 blue-block"></div>
+		<div id="block3" class="col-sm-2 blue-block"></div>
+		<div id="block4" class="col-sm-2 blue-block"></div>
+	</div>
+	<div class="row">
+		<img class="col-md-2 hal" src="/img/hal.gif" alt="HAL 9000">
+	</div>
 
-
-
-
-	
-	
-   
-
-
+	<div class="row">
+		<div id="block2" class="col-sm-2 blue-block"></div>
+		<div id="block2" class="col-sm-2 blue-block"></div>
+		<div id="block2" class="col-sm-2 blue-block"></div>
+		<div id="block2" class="col-sm-2 blue-block"></div>
+	</div>
 
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script>
@@ -130,10 +95,9 @@ Auth::logout();
 	//var exitLogout =setInterval(function newDoc() {
   // window.location.assign("index.php")
 //}, 2000);
-
-
  
 $( document ).ready(function() {
+
     console.log( "ready!" );
 
 
@@ -159,11 +123,6 @@ $( document ).ready(function() {
 	}, 500);
 
 });	
-	   
-	 
-
-	
-
 
 </script>
 
