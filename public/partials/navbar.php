@@ -61,7 +61,7 @@ if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['lo
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">Brand</a>
+	       <img src="/img/jobs.png">
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -109,7 +109,7 @@ if(!empty($_POST['user_name']) && !empty($_POST['password']) && isset($_POST['lo
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">Brand</a>
+	      <img src="/img/jobs.png">
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->

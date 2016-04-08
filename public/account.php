@@ -149,13 +149,14 @@ function userInput($dbc) {
 
   	 body{
 
-  	 	background-color: lightblue;
+  	 	
   	 }
 
   	 .form3{
 
   	 	width: 100%;
   	 	margin: 0 auto;
+  	 	
   	 }
 
   	 .sign-placeholders3{
@@ -182,6 +183,35 @@ function userInput($dbc) {
   	  		margin-left: 30px;
   	 	
   	}
+
+  	 #comment_delete_btn,#post_delete_btn:hover{
+
+			color:white;
+			background-color: #849189;
+  	}
+
+  	  #comment_update_btn,#post_update_btn:hover{
+
+  	  		color:white;
+  	  		background-color: #849189;
+  	 	
+  	}
+  	.form-control.form3 {
+  		border-color:#849189;
+  		border-width:2px;
+
+  	}
+
+  	#account-direction {
+  		color:#DCDCDC;
+  	}
+
+  	#postid {
+  		border-color:#849189;
+  		border-width:2px;
+  	}
+
+
 
   	 </style>
 
@@ -245,8 +275,10 @@ function userInput($dbc) {
 		<?php if(!empty($allPostsbyUser)): ?>
 			<?php foreach ($allPostsbyUser as $key => $value): ?>
 			<form method ="POST">
-				<textarea  type="text"  name="updatePostId" cols="15" rows="1" value="<?= $value['post_id']?> "aria-describedby="basic-addon1" readonly><?= $value['post_id'] ?></textarea>
+				<textarea  type="text" id='postid'  name="updatePostId" cols="15" rows="1" value="<?= $value['post_id']?> "aria-describedby="basic-addon1" readonly><?= $value['post_id'] ?></textarea>
+				<br>
 			 	<textarea maxlength="200" type="text" class="form-control form3" name="userPostsTitle" aria-describedby="basic-addon1"><?= $value['title'] ?> Created on: <?= $value['date'] ?></textarea>			
+			 	<br>
 			 	<textarea  type="text" class="form-control form3" name="userPostsContent" aria-describedby="basic-addon1"><?= $value['content'] ?></textarea>
 			 	<div class='postbtns'>
 			 		<button  id="post_delete_btn" name="post_delete_btn" type="submit" value="post_delete_btn" class="btn btn-default">delete</button>
