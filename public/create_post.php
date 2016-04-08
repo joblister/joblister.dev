@@ -1,19 +1,12 @@
 <?php
 
-require_once '../utils/Auth.php';
-require_once '../models/postsModel.php';
-require_once '../utils/Input.php';
-var_dump($_REQUEST);
+require_once '../bootstrap.php';
+
 $title = Input::has('title')? Input::get('title'): '';
 $content = Input::has('content')? Input::get('content'): '';
 $user_id = Auth::user()->id;
 $date_posted = strtotime('now');
 $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
-
-var_dump($user_id);
-var_dump($date_posted);
-var_dump($title);
-var_dump($content);
 
 if(( $title != ''|| $title != null) && ($content != ''|| $content != null)){
 

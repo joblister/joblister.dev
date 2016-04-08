@@ -1,14 +1,10 @@
 <?php
 
-require_once '../utils/Auth.php';
-require_once '../models/postsModel.php';
-require_once '../models/commentsModel.php';
-
+require_once '../bootstrap.php';
 
 extract(postsModel::paginate());
 
 $post_id = Input::has('name')? Input::get('name'):1;
-var_dump($post_id . ' = post id');
 
 $onePostArray = postsModel::postId($post_id);
 

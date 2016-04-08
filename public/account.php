@@ -1,14 +1,8 @@
 <?php
-require_once '../utils/Auth.php';
-require_once '../models/Model.php';
-require_once '../models/User.php';
-require_once '../models/postsModel.php';
-require_once '../models/commentsModel.php';
+
+require_once '../bootstrap.php';
 
 $user = $_SESSION['logged_in_user'];
-
-var_dump($user);
-var_dump($_POST);
 
 $post_id = Input::has('name')? Input::get('name'): Input::get('updatePostId');
 $id = Auth::user()->id;
@@ -22,8 +16,6 @@ $date_posted = strtotime('now');
 $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
 
 $user_id = Auth::user()->id;
-
-
 
 if(($post_title != ''|| $post_title != null) && ($post_content != ''|| $post_content != null) && Input::has('post_update_btn')){
 	$postArrayUpdate = postsModel::postId($post_id);
@@ -49,8 +41,7 @@ if(($post_title != ''|| $post_title != null) && ($post_content != ''|| $post_con
 
 $comment_id = Input::has('updateCommentId')? Input::get('updateCommentId'): 1;
 $commentsByUser = Input::has('userComments')? Input::get('userComments'): 1;
-var_dump($comment_id . ' = comment_id');
-var_dump($commentsByUser . ' commentsbyUser');
+
 
 if(($commentsByUser != ''|| $commentsByUser != null) && ($comment_id != ''|| $comment_id != null) && Input::has("comment_delete_btn")){
 	
