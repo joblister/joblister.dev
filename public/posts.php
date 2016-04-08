@@ -17,6 +17,12 @@ $today = date("F j, Y, g:i a");
 	<meta charset="UTF-8">
 	<title>Add Listings</title>
 	<style>
+		body{
+			position: relative;
+			height: auto;
+		}
+
+	
 
 		.form-control, .sign-placeholders {
 
@@ -53,6 +59,20 @@ $today = date("F j, Y, g:i a");
 			color: green;
 		}
 
+		#page-navs{
+			
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			
+		}
+
+		#page-navs a {
+			
+			margin: 10px;
+			
+		}
+
 	</style>
 </head>
 <body>
@@ -65,14 +85,12 @@ $today = date("F j, Y, g:i a");
 			<br>
 			 	<ul id="posts-ordered-list">
 			   	<?php foreach($posts as $row => $value): ?>
-			  
 		        <li><a href="oneSelectedPost.php?name=<?= $posts[$row]['post_id']?>"> <?= $posts[$row]['title'] ?></a></li><br>
 		   		<?php endforeach; ?>
 		   		</ul>
-		
 		</div>
 
-		<div>
+		<div id="page-navs">
 			<?php if($page < $total_pages) { ?> 
 			<a href="posts.php?page=<?=($page+1)?>">NEXT</a><br>
 			<?php } ?>
@@ -80,10 +98,14 @@ $today = date("F j, Y, g:i a");
 			<?php if($page > 1) { ?>     
 			<a href="posts.php?page=<?=($page-1)?>">PREVIOUS</a><br>
 			<?php } ?>
-
 		</div>
 
-	 <?php include 'partials/footer.php';?>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	 <div id="footer-posts"><?php include 'partials/footer.php';?></div>
 
 	<script src="/js/practice.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

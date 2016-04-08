@@ -1,6 +1,7 @@
 <?php
-require_once '../utils/Auth.php';
-require_once '../models/User.php';
+
+require_once '../bootstrap.php';
+
 $errors = [];
 
 if(!empty($_POST)){
@@ -96,7 +97,7 @@ function descAdd($dbc){
 
     }
 
-   var_dump($errors);     
+      
     return $errors;
 
 

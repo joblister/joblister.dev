@@ -1,15 +1,13 @@
 <?php
 
-require_once '../utils/Auth.php';
-require_once '../models/postsModel.php';
-require_once '../models/Input.php';
-require_once '../models/commentsModel.php';
+require_once '../bootstrap.php';
+
 session_start();
+
 $postIdFromLink = Input::has('name')? Input::get('name'): 1;
-var_dump($postIdFromLink . ' =post_id from Link on prev page');
 
 $commentText = Input::get('comment');
-var_dump($_REQUEST);
+
 $date_posted = strtotime('now');
 
 $date_posted = gmdate("Y-m-d H:i:s", $date_posted);
@@ -84,6 +82,14 @@ if($commentText !='' || $commentText != null){
 			color: green;
 		}
 
+		
+     .footer-changePassword{
+        display: float;
+        clear: both;
+        width: 1243px;
+        height: 52px;
+     }
+
 	</style>
 </head>
 <body>
@@ -102,7 +108,7 @@ if($commentText !='' || $commentText != null){
 			</form>
 
 		</div>
-
+  <div class="footer-changePassword"><?php include 'partials/footer.php';?></div>
 	<script src="/js/practice.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
