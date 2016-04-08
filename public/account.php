@@ -210,9 +210,7 @@ function userInput($dbc) {
   		border-width:2px;
   	}
 
-
-
-  	 </style>
+  	</style>
 
 </head>
 <body>
