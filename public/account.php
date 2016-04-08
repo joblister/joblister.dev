@@ -100,8 +100,7 @@ function userInput($dbc) {
 		$errors['user_name'] = $e->getMessage();
 	}
 	
-	var_dump($errors);
-	echo 'the top is errors';
+	
 
 	if(empty($errors)){
 
@@ -121,7 +120,7 @@ function userInput($dbc) {
 		$user->user_name = $user_name;
 		
 		$user->email = $email;
-		var_dump($user);
+		
 		
 		$user->save();
 		$_SESSION['logged_in_user'] = $user;

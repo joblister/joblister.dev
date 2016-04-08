@@ -312,7 +312,7 @@
   		<div class="col-md-6" id="richards-row">
 			<h3 class='footer-txt'>Richard De Los Santos</h3>
 		<div id='footer-icons1'>
-			<a href=""><i class="fa fa-twitter fa-2x twitter-icon"></i></a>
+			<a href="https:/twitter.com/lowliferichard"><i class="fa fa-twitter fa-2x twitter-icon"></i></a>
 			<a href=""><i class="fa fa-facebook-official fa-2x facebook-icon"></i></a>
 			<a href=""><i class="fa fa-linkedin-square fa-2x linked-icon"></i></a>
 			<a href=""><i class="fa fa fa-envelope-o fa-2x mail-icon"></i></a>
