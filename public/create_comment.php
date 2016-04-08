@@ -2,7 +2,7 @@
 
 require_once '../bootstrap.php';
 
-session_start();
+
 
 $postIdFromLink = Input::has('name')? Input::get('name'): 1;
 

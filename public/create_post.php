@@ -98,6 +98,8 @@ if(( $title != ''|| $title != null) && ($content != ''|| $content != null)){
 			</form>
 					 
 		</div>
+	<br>
+	<br>
 	<?php include 'partials/footer.php';?>
 	<script src="/js/practice.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

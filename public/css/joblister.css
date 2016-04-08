@@ -120,7 +120,7 @@ font-family: 'Open Sans', sans-serif;
     background-image:url("/img/the office.jpg");
     background-position:no-repeat;
     background-position: center;
-    color:white;
+    color:red;
     text-align: center;
     padding: 70px;
 
@@ -204,8 +204,6 @@ font-family: 'Open Sans', sans-serif;
     text-align: center;
 }
 
-
-
 .line {
     margin:30px;
     height: 1px;
@@ -227,28 +225,28 @@ font-family: 'Open Sans', sans-serif;
 
 
 }
+
 @media (max-width: 400px) {
 
 
+    #bye {
 
-#bye {
+        position:relative;
+        top:30px;
+    } 
 
-    position:relative;
-    top:30px;
-} 
+    .hal {
 
-.hal {
+        position: relative;
+        left: 40%;
+        top: 50px;
+    }
 
-    position: relative;
-    left: 40%;
-    top: 50px;
-}
+    .logout-txt {
 
-.logout-txt {
+      text-align: center;
 
-  text-align: center;
-
-}
+    }
 
 
 
