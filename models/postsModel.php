@@ -58,7 +58,7 @@ class postsModel extends Model{
 
              $instance = new static($onePostArray);
          }
-         var_dump('x', $post_id, $instance);
+  
          return $instance;
 
     }

@@ -54,7 +54,7 @@ class User extends Model{
             $stmt->bindValue(":id", $this->id, PDO::PARAM_INT);    
 
             $result = $stmt->execute();
-            var_dump($result);
+            
     }
         // @TODO: Use prepared statements to ensure data security
 
