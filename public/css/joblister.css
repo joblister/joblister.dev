@@ -126,31 +126,18 @@ font-family: 'Open Sans', sans-serif;
 
 }
 
-
-/*.posts-details-comments{
-
-    background-image:url("/img/posts-details-comments.png");
-    background-position: no-repeat;
-    background-position: center;
-    background-color: yellow;
-    
-    height: 450px;
-   
+#posts-screenshots{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     
 }
 
-.posts-screenshot {
-
-    background-image:url("/img/posts.png");
-    background-position: no-repeat;
-    background-position: center;
-    background-color: blue;
-    height: 200px;
+.index-posts{
+    width: 900px;
     margin: 0 auto;
 
 }
-*/
-
 
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
 
@@ -242,16 +229,7 @@ font-family: 'Open Sans', sans-serif;
 }
 @media (max-width: 400px) {
 
-.jumbotron {
 
-    background-image:url("/img/the office.jpg");
-    background-position:no-repeat;
-    background-position: center;
-    color:white;
-    text-align: center;
-    padding: 20px;
-
-}
 
 #bye {
 
