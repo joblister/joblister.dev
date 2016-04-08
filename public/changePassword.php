@@ -1,13 +1,8 @@
 <?php
-require_once '../utils/Auth.php';
-require_once '../models/Model.php';
-require_once '../models/User.php';
-require_once '../utils/Input.php';
+
+require_once '../bootstrap.php';
 
 $user = ($_SESSION['logged_in_user']);
-
-var_dump($user);
-
 
 if(!empty($_POST)){
     extract(userInput($dbc));
@@ -60,11 +55,11 @@ if (empty($errors) && $password == $confirmPassword) {
     
     $user->updatePassword($password);
 
-    var_dump($user->password);
+ 
 
     $_SESSION['logged_in_user'] = $user;
 
-    var_dump($user);
+    
   
     return array('user'=>$user,'errors'=>$errors);
 } else {
@@ -115,6 +110,13 @@ if (empty($errors) && $password == $confirmPassword) {
   	 	
   	 }
 
+     .footer-changePassword{
+        display: float;
+        clear: both;
+        width: 1243px;
+        height: 52px;
+     }
+
   	 </style>
 
 </head>
@@ -139,38 +141,41 @@ if (empty($errors) && $password == $confirmPassword) {
             </div>
      		<h4 class="account-info"> Step 3. If so, Congrats! Just click on the submit button, You have
      			now officially edited your information.</h4>
- 		</div>
+ 		</div> <!-- end col-md-4 -->
 
  	    <div class='line'></div>	
 
-    <div class="col-md-8">
+        <div class="col-md-8">
 
-      <form method='POST'>
-        <h3 class="sign-placeholders">Password</h3>
-        <textarea type="password" class="form-control form1" value="<?= $user->password ?>" name="password" aria-describedby="basic-addon1"></textarea>
-        <h3 class="sign-placeholders">Confirm Password</h3>
-        <span> 
-          <?php if (isset($errors['emptyPassword'])): ?>
-            <?=  $errors['emptyPassword'] ?>
-          <?php endif ?>
-        </span>
+            <form method='POST'>
+                <h3 class="sign-placeholders">Password</h3>
 
-        <span> 
-          <?php if (isset($errors['doNotMatch'])): ?>
-            <?=  $errors['doNotMatch'] ?>
-          <?php endif ?>
-        </span>
+                <textarea type="password" class="form-control form1" value="<?= $user->password ?>" name="password" aria-describedby="basic-addon1"></textarea>
+                <h3 class="sign-placeholders">Confirm Password</h3>
+                <span> 
+                <?php if (isset($errors['emptyPassword'])): ?>
+                    <?=  $errors['emptyPassword'] ?>
+                <?php endif ?>
+                </span>
 
-        <span> 
-          <?php if (isset($success['successful'])): ?>
-            <?=  $success['successful'] ?>
-          <?php endif ?>
-        </span>
-        <textarea type="password" class="form-control form1" value="<?= $user->password ?>" name="confirmPassword" aria-describedby="basic-addon1"></textarea>
-        <button  id="edit-btn" name="edit-btn" type="submit" class="btn btn-default">Submit</button>
-	     </form>
-		</div>	
-		
+                <span> 
+                <?php if (isset($errors['doNotMatch'])): ?>
+                    <?=  $errors['doNotMatch'] ?>
+                <?php endif ?>
+                </span>
+
+                <span> 
+                <?php if (isset($success['successful'])): ?>
+                    <?=  $success['successful'] ?>
+                <?php endif ?>
+                </span>
+
+                <textarea type="password" class="form-control form1" value="<?= $user->password ?>" name="confirmPassword" aria-describedby="basic-addon1"></textarea>
+                <button  id="edit-btn" name="edit-btn" type="submit" class="btn btn-default">Submit</button>
+            </form>
+   
+		</div> <!-- end col-md-8 -->
+        <div class="footer-changePassword"><?php include 'partials/footer.php';?></div>
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></script>

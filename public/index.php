@@ -1,7 +1,8 @@
 <?php
+
 if(isset($_SESSION['logged_in_user'])){
 
-  var_dump($_SESSION['logged_in_user']);
+ 
 }
 
 
@@ -56,7 +57,15 @@ if(isset($_SESSION['logged_in_user'])){
       </p> 
     </div>
 
-</div>
+   <!--  <div>
+
+      <div class="col-lg-12" id="posts-screenshot"></div>
+
+      <div class="col-lg-12" id="posts-details-comments"></div>
+
+    </div> -->
+
+</div> <!-- end page-wrap -->
 
     <?php include 'partials/footer.php';?>
   <!--- js here -->
