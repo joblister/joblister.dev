@@ -1,3 +1,5 @@
+
+
 .sign-placeholders {
 
     color:black;
@@ -197,7 +199,7 @@ font-family: 'Open Sans', sans-serif;
 .line {
     margin:30px;
     height: 1px;
-    background-color: #717171;
+    background-color: #DCDCDC;
     border-bottom: 2px solid white;
 
     box-shadow: 1.5px 1.5px 2px #888888;
