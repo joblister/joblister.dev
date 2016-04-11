@@ -5,8 +5,6 @@ require_once '../models/postsModel.php';
 
 extract(postsModel::paginate());
 
-$today = date("F j, Y, g:i a"); 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +18,8 @@ $today = date("F j, Y, g:i a");
 		body{
 			position: relative;
 			height: auto;
-		}
 
-	
+		}
 
 		.form-control, .sign-placeholders {
 
@@ -73,6 +70,12 @@ $today = date("F j, Y, g:i a");
 			
 		}
 
+		#footer-posts{
+			position: absolute;
+			margin-bottom: 0px;
+			width: 100%;
+		}
+
 	</style>
 </head>
 <body>
@@ -99,12 +102,10 @@ $today = date("F j, Y, g:i a");
 			<a href="posts.php?page=<?=($page-1)?>">PREVIOUS</a><br>
 			<?php } ?>
 		</div>
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+		<br>
+		<br>
+		<br>
+		<br>
 	 <div id="footer-posts"><?php include 'partials/footer.php';?></div>
 
 	<script src="/js/practice.js"></script>
